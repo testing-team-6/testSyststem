@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <!--  admin module related tiles    -->
+    <definition name="adminLayout" extends="baseLayout">
+        <put-attribute name="menu" value="/WEB-INF/pages/layout/admin-menu.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/pages/layout/footer.jsp" />
+    </definition>
+
+    <definition name="adminWelcomeLayout" template="/WEB-INF/pages/layout/welcome-layout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="heading" value="管理控制台" />
+        <put-attribute name="body" value="" />
+    </definition>
+
+    <definition name="/admin.welcome.tiles" extends="adminLayout">
+        <put-attribute name="title" value="后台管理"/>
+        <put-attribute name="body"  value="/WEB-INF/pages/admin/welcome.jsp"/>
+    </definition>
+
+    <definition name="/admin.tiles" extends="adminWelcomeLayout">
+        <put-attribute name="title" value="后台管理"/>
+        <put-attribute name="body"  value="/WEB-INF/pages/admin/index.jsp"/>
+    </definition>
+
+</tiles-definitions>

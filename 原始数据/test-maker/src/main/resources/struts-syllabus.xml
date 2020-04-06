@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+    <package name="syllabus-actions" namespace="/web/syllabus" extends="default-auth">
+        <action name="create" class="cn.cstqb.exam.testmaker.actions.syllabus.SaveOrUpdateSyllabusAction" />
+        <action name="delete" class="cn.cstqb.exam.testmaker.actions.syllabus.DeleteSyllabusAction" />
+        <action name="list-*" class="cn.cstqb.exam.testmaker.actions.syllabus.ListSyllabusAction" method="{1}"/>
+    </package>
+
+    <package name="chapter-actions" namespace="/web/chapter" extends="default-auth">
+        <action name="save" class="cn.cstqb.exam.testmaker.actions.chapter.SaveOrUpdateChapterAction" />
+        <action name="delete" class="cn.cstqb.exam.testmaker.actions.chapter.DeleteChapterAction" />
+        <action name="list" class="cn.cstqb.exam.testmaker.actions.chapter.ListChapterAction" />
+    </package>
+
+    <package name="knowledgePoint-actions" namespace="/web/knowledge-point" extends="default-auth">
+        <action name="save" class="cn.cstqb.exam.testmaker.actions.knowledgePoint.SaveOrUpdateKnowledgePointAction"/>
+        <action name="delete" class="cn.cstqb.exam.testmaker.actions.knowledgePoint.DeleteKnowledgePointAction" />
+        <action name="list" class="cn.cstqb.exam.testmaker.actions.knowledgePoint.ListKnowledgePointAction" />
+        <action name="paging" class="cn.cstqb.exam.testmaker.actions.knowledgePoint.ListKnowledgePointAction" method="paging" />
+        <action name="list-by-syllabus" class="cn.cstqb.exam.testmaker.actions.knowledgePoint.ListKnowledgePointBySyllabus" />
+        <action name="list-by-syllabus-paging" class="cn.cstqb.exam.testmaker.actions.knowledgePoint.ListKnowledgePointBySyllabus" method="paging" />
+    </package>
+</struts>

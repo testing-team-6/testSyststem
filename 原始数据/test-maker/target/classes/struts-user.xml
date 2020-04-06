@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="user-page-actions" namespace="/web/pages" extends="default-auth">
+        <action name="users">
+            <result name="success">/WEB-INF/pages/admin/users.jsp</result>
+        </action>
+    </package>
+
+    <package name="users" namespace="/web/user" extends="default-auth">
+        <action name="checkEmail" class="cn.cstqb.exam.testmaker.actions.user.CheckEmailAction"/>
+        <action name="checkUsername" class="cn.cstqb.exam.testmaker.actions.user.CheckUserNameAction"/>
+        <action name="create" class="cn.cstqb.exam.testmaker.actions.user.CreateUserAction"/>
+        <action name="resetPassword" class="cn.cstqb.exam.testmaker.actions.user.ResetPasswordAction"/>
+        <action name="user-*" class="cn.cstqb.exam.testmaker.actions.user.ManageExistingUserAction" method="{1}">
+            <result name="success" type="json">
+                <param name="statusCode">200</param>
+                <param name="excludeProperties">
+                    user.admin,
+                    ^user.*
+                </param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="error" type="json">
+                <param name="errorCode">400</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="InvalidForm" type="json">
+                <param name="errorCode">406</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="excludeProperties">
+                    user.*
+                </param>
+            </result>
+        </action>
+        <action name="list-active" class="cn.cstqb.exam.testmaker.actions.user.ListActiveUsersAction">
+            <result name="success" type="json">
+                <param name="statusCode">200</param>
+                <param name="enableGZIP">true</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors,
+                    .*password,
+                    users.*projects
+                </param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+        </action>
+        <action name="count" class="cn.cstqb.exam.testmaker.actions.user.ListUsersPaginatedAction" method="paging"/>
+        <action name="list-paginated" class="cn.cstqb.exam.testmaker.actions.user.ListUsersPaginatedAction">
+            <result name="success" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="enableGZIP">true</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors,
+                    .*password,
+                    entities.*projects,
+                    pageNumber,
+                    pageSize
+                </param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+        </action>
+
+        <action name="list-all" class="cn.cstqb.exam.testmaker.actions.user.ListUsersAction">
+            <result name="success" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors,
+                    .*password
+                </param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+        </action>
+    </package>
+
+</struts>

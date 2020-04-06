@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="question-reporting-actions" namespace="/web/reporting/question" extends="default-auth">
+        <action name="summary" class="cn.cstqb.exam.testmaker.actions.reporting.QuestionSummaryAction"/>
+    </package>
+    <package name="project-reporting-actions" namespace="/web/reporting/project" extends="default-auth">
+        <action name="summary" class="cn.cstqb.exam.testmaker.actions.reporting.ProjectSummaryAction"/>
+        <action name="send-reminders" class="cn.cstqb.exam.testmaker.actions.reporting.NotifyExpiringQuestionsAction"/>
+    </package>
+</struts>

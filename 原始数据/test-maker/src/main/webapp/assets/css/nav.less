@@ -1,0 +1,40 @@
+
+.navbar-caption {
+  font-size: @font-size-h4;
+  color: #EEEEEE !important;
+}
+.navbar-btn-tm:extend(.navbar-btn){
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.navbar-nav > li > a.btn-primary{
+  color: @btn-primary-color;
+}
+
+.navbar-nav > li > a.btn-success {
+   color: @btn-success-color;
+ }
+.navbar-nav > li > a.btn-info {
+   color: @btn-info-color;
+ }
+.navbar-nav > li > a.btn-warning {
+   color: @btn-warning-color;
+ }
+.navbar-nav > li > a.btn-danger {
+   color: @btn-danger-color;
+ }
+
+.navbar-primary {
+//  &:extend(.navbar-inverse);
+  background-color: @brand-primary-dark;
+}
+
+.navbar-text {
+  &:extend(.navbar-text);
+  color: lighten(@gray-base, 70%);
+}
+.navbar.navbar-modal {
+  margin-left: 15px;
+  margin-right: 15px;
+}

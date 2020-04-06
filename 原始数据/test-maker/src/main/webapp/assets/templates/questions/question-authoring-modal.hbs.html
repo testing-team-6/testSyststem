@@ -1,0 +1,377 @@
+<div id="{{modalId}}" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">编写题目
+                    <small>
+                        <span class="label-lg label-primary">No.{{question.id}}</span>
+                    </small>
+                </h3>
+            </div>
+            <div class="modal-body">
+                <form id="question-author-form" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <nav class="toolbar navbar navbar-modal">
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <a class="btn btn-info navbar-btn-tm" data-toggle="collapse"
+                                           href="#question-info-section" role="button"><i id="question-well-collapse"
+                                                                                          class="glyphicon glyphicon-adjust"></i>显示题目属性</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-info navbar-btn-tm" data-toggle="collapse"
+                                           data-target="#img-panel-body" role="button"><i
+                                                class="glyphicon glyphicon-adjust"></i>显示图片详情</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div id="question-info-section" class="collapse">
+                        <table class="table table-bordered table-condensed table-responsive">
+                            <tr>
+                                <td class="control-label"><label>知识点</label></td>
+                                <td colspan="5">
+                                    {{#with question.knowledgePoint}}
+                                    <p>{{number}} ({{kLevel}}) {{title}}</p>
+                                    {{/with}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="control-label"><label>语言</label></td>
+                                <td><span class="col-md-8">{{question.language.name}}</span></td>
+                                <td class="control-label"><label>类型</label></td>
+                                <td><span class="col-md-6">{{question.type.name}}</span></td>
+                                <td class="control-label"><label>状态</label></td>
+                                <td class="bg-warning">
+                                    <div class="col-md-8">
+                                        <label class="form-control-static" style="font-size: 120%">{{question.status.name}}</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="control-label"><label for="author-q-difficulty">难度</label></td>
+                                <td>
+                                    <div class="col-md-9">
+                                        <select id="author-q-difficulty" name="difficulty"
+                                                class="form-control selectpicker" required>
+                                            <option value="1">简单</option>
+                                            <option value="2">一般</option>
+                                            <option value="3">困难</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="control-label"><label>K 值</label></td>
+                                <td><span class="col-md-4">{{question.knowledgePoint.kLevel}}</span></td>
+                                <td class="control-label"><label for="author-q-score">分值</label></td>
+                                <td>
+                                    <div class="col-lg-8">
+                                        <label class="form-control-static">{{question.score}}</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="control-label"><label for="author-q-multipleChoice">多选</label></td>
+                                <td>
+                                    <div class="col-lg-8">
+                                        <input id="author-q-multipleChoice" name="multipleChoice" type="checkbox"
+                                               checked="{{question.multipleChoice}}">
+                                    </div>
+                                </td>
+                                <td class="control-label"><label>出题时限</label></td>
+                                <td>
+                                    <div class="col-md-10 col-lg-8">
+                                        {{date question.authoringStartDate format='LL'}} <i
+                                            class="glyphicon glyphicon-minus"></i> {{date question.authoringFinishDate
+                                        format='LL'}}
+                                    </div>
+                                </td>
+                                <td class="control-label"><label>评审时限</label></td>
+                                <td>
+                                    <div class="col-md-10 col-lg-8">
+                                        <span>{{date question.reviewingStartDate format='LL'}} <i
+                                                class="glyphicon glyphicon-minus"></i>
+                                            {{date question.reviewingFinishDate format='LL'}}
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-panel panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <span>题目图片<i id="upload-question-image-modal" title="上传题目图片" data-toggle="collapse"
+                                                 data-target="#question-image-form"
+                                                 class="glyphicon glyphicon-upload"></i></span>
+                                    <label class="label-lg label-success"><i class="glyphicon glyphicon-hand-left"
+                                                                             style="font-size: larger"></i>请点击左侧向上图标上传图片</label>
+                                </div>
+                            </div>
+                            <div id="img-panel-body" class="panel-body collapse">
+                                <div id="question-image-form" class="collapse well">
+                                    <div class="form-group">
+                                        <label for="question-image-caption" class="col-md-2 control-label">图片说明</label>
+
+                                        <div class="col-md-3">
+                                            <input id="question-image-caption" name="caption" class="form-control">
+                                        </div>
+                                        <label for="question-image" class="col-md-1 control-label">图片</label>
+
+                                        <div class="col-md-3">
+                                            <input id="question-image" name="upload" placeholder="请选择要上传的图片"
+                                                   class="form-control" type="file" accept="image/*" required>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button id="submit-question-img" type="button" class="btn btn-primary">
+                                                上传图片
+                                            </button>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button type="reset" class="btn btn-default">取消</button>
+                                        </div>
+                                    </div>
+                                    <div id="question-image-preview" class="form-group"></div>
+                                </div>
+                                <div id="question-image-container" class="form-group">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-panel panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="panel-title"><span>题目详情</span></div>
+                            </div>
+                            <div class="panel-body">
+                                <div role="tabpanel" class="form-panel">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation"><a href="#scenario-tab" aria-controls="scenario-tab"
+                                                                   role="tab" data-toggle="tab">场景描述</a></li>
+                                        <li role="presentation" class="active"><a id="stem-tab-caption" href="#stem-tab"
+                                                                                  aria-controls="stem-tab" role="tab"
+                                                                                  data-toggle="tab">题干</a></li>
+                                        <li role="presentation"><a id="remark-tab-caption" href="#remark-tab"
+                                                                   aria-controls="#remark-tab" role="tab"
+                                                                   data-toggle="tab">备注</a></li>
+                                        <li role="presentation"><a id="choice-tab-header" href="#author-q-choice-tab"
+                                                                   aria-controls="choice-tab" role="tab"
+                                                                   data-toggle="tab">题目选项</a></li>
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade" id="scenario-tab">
+                                            <textarea id="author-form-q-scenario" name="scenario" class="rich-editable"
+                                                      cols="80" rows="5">
+                                                {{#if question.scenario}}
+                                                    {{question.scenario}}
+                                                {{/if}}
+                                            </textarea>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade in active" id="stem-tab">
+                                            <textarea id="author-form-q-stem" name="stem" class="rich-editable"
+                                                      cols="80" rows="10" required>
+                                                {{#if question.stem}}
+                                                    {{question.stem}}
+                                                {{/if}}
+                                            </textarea>
+                                        </div>
+
+                                        <div role="tabpanel" class="tab-pane fade" id="author-q-choice-tab">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a class="btn" role="button" data-toggle="collapse"
+                                                           href="#collapseOne" aria-expanded="true"
+                                                           aria-controls="collapseOne">
+                                                            题目选项详情
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                                     aria-labelledby="headingOne">
+                                                    <div class="panel-body">
+                                                        <!-- Choice list table -->
+                                                        <table id="q-choice-table"
+                                                               class="table table-bordered table-striped table-condensed table-responsive table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>选项</th>
+                                                                <th align="center">内容</th>
+                                                                <th class="action-col-2"></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {{#each choices}}
+                                                            <tr data-index="{{@index}}" data-id="{{id}}"
+                                                                data-label="{{choiceLabel}}"
+                                                                data-answer="{{isCorrectAnswer}}">
+                                                                <td width="40px">{{id}}</td>
+                                                                <td width="40px">
+                                                                    {{#if isCorrectAnswer}}
+                                                                    <strong class="label-lg label-success">{{choiceLabel}}</strong>
+                                                                    {{else}}
+                                                                    <strong class="label-lg label-default">{{choiceLabel}}</strong>
+                                                                    {{/if}}
+                                                                </td>
+                                                                <td>
+                                                                    <div class="choice-content">{{content}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="#" class="edit-item"><i
+                                                                            class="glyphicon glyphicon-edit"></i></a>
+                                                                    <a href="#" class="delete-choice"><i
+                                                                            class="glyphicon glyphicon-trash"></i></a>
+                                                                    <a href="#" class="upload-image"><i
+                                                                            class="glyphicon glyphicon-upload"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            {{/each}}
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="panel panel-info">
+                                                <div class="panel-heading" role="tab" id="headingTwo">
+                                                    <h4 class="panel-title">
+                                                        <a class="btn" data-toggle="collapse" href="#collapseTwo"
+                                                           aria-expanded="false" aria-controls="collapseTwo">
+                                                            题目选项编辑框
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
+                                                     aria-labelledby="headingTwo">
+                                                    <div class="panel-body">
+                                                        <div id="choice-image-form" class="collapse well">
+                                                            <div class="form-group">
+                                                                <label for="image-caption"
+                                                                       class="col-md-2 control-label">图片说明</label>
+
+                                                                <div class="col-md-3">
+                                                                    <input id="image-caption" name="caption"
+                                                                           class="form-control">
+                                                                </div>
+                                                                <label for="choice-image"
+                                                                       class="col-md-1 control-label">图片</label>
+
+                                                                <div class="col-md-3">
+                                                                    <input id="choice-image" name="upload"
+                                                                           placeholder="请选择要上传的图片" class="form-control"
+                                                                           type="file" accept="image/*" required>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <button id="upload-choice-img-btn" type="button"
+                                                                            class="btn btn-primary">上传图片
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <button id="reset-choice-img-form" type="reset"
+                                                                            class="btn btn-default">取消
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="choice-image-container" class="form-group">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-md-5">
+                                                                <div class="alert alert-warning alert-dismissible"
+                                                                     role="alert">
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span></button>
+                                                                    <strong>注意！</strong> 要新增或者编辑题目选项，请先选择题目序号！
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="q-choice-id"
+                                                                   class="col-md-1 control-label">ID</label>
+
+                                                            <div class="col-md-1">
+                                                                <input id="q-choice-id" type="text" class="form-control"
+                                                                       disabled>
+                                                            </div>
+                                                            <label for="q-choice-label-select"
+                                                                   class="col-md-2 col-lg-1 control-label">序号</label>
+
+                                                            <div class="choice-label-list col-md-3"
+                                                                 style="width: auto;">
+                                                                <select id="q-choice-label-select" name="choiceLabel"
+                                                                        class="form-control" required>
+                                                                    <option></option>
+                                                                    <option label="A" data-index="0">A</option>
+                                                                    <option label="B" data-index="1">B</option>
+                                                                    <option label="C" data-index="2">C</option>
+                                                                    <option label="D" data-index="3">D</option>
+                                                                    <option label="E" data-index="4">E</option>
+                                                                    <option label="F" data-index="5">F</option>
+                                                                    <option label="G" data-index="6">G</option>
+                                                                    <option label="H" data-index="7">H</option>
+                                                                    <option label="I" data-index="8">I</option>
+                                                                    <option label="J" data-index="9">J</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <label for="q-choice-answer" class="col-md-2 control-label">正确答案</label>
+
+                                                            <div class="col-md-2">
+                                                                <input type="checkbox" id="q-choice-answer"
+                                                                       value="option1"> <strong></strong>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <textarea id="item-choice-content" name="choice-content"
+                                                                          class="rich-editable" rows="5">
+                                                                </textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-md-offset-1 col-md-2">
+                                                                <button id="save-choice-btn" type="button"
+                                                                        class="btn btn-success">保存题目选项
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+
+                    <button id="submit-edit-form-btn" type="button" class="btn btn-primary">保存并关闭</button>
+                    <span id="change-status-container"></span>
+                    <button id="cancel-edit-form-btn" type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

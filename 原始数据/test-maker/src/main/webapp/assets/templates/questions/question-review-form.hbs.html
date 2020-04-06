@@ -1,0 +1,164 @@
+<div class="well-lg bg-warning">
+    <div class="page-header">
+        <h3>题目评审
+            <small>试题 {{question.id}}</small>
+        </h3>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a href="#q-attr-table" data-toggle="collapse" class="btn">题目属性</a></h3>
+        </div>
+        <div class="panel-body">
+            <div id="q-attr-table" class="collapse in">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td class="active control-label"><label>ID</label></td>
+                        <td>{{question.id}}</td>
+                        <td class="active control-label"><label>知识点</label></td>
+                        <td colspan="5">
+                            {{#with question.knowledgePoint}}
+                            <p>{{../syllabus.level}}-{{number}} ({{kLevel}}) {{title}}</p>
+                            {{/with}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="active control-label"><label>类型</label></td>
+                        <td>{{question.type.name}}</td>
+                        <td class="active control-label"><label>语言</label></td>
+                        <td>{{question.language.name}}</td>
+                        <td class="active control-label"><label>难度</label></td>
+                        <td>{{question.difficulty}}</td>
+                        <td class="active control-label"><label>分值</label></td>
+                        <td>{{question.score}}</td>
+                    </tr>
+                    <tr>
+                        <td class="active control-label"><label>状态</label></td>
+                        <td>{{question.status.name}}</td>
+                        <td class="active control-label"><label>作者</label></td>
+                        <td>{{question.author.fullName}}</td>
+                        <td class="active control-label"><label>评审</label></td>
+                        <td>
+                            {{#each question.reviewers}}
+                            <p>{{this.fullName}}</p>
+                            {{/each}}
+                        </td>
+                        <td class="active control-label"><label>质管</label></td>
+                        <td>{{question.qualityAdmin.fullName}}</td>
+                    </tr>
+                    <tr>
+                        <td class="active control-label"><label>出题期限</label></td>
+                        <td colspan="3">
+                                        <span>{{date question.authoringStartDate format='LL'}} <i
+                                                class="glyphicon glyphicon-minus"></i>
+                                            {{date question.authoringFinishDate format='LL'}}
+                                        </span>
+                        </td>
+                        <td class="active control-label"><label>评审期限</label></td>
+                        <td colspan="3">
+                                        <span>{{date question.reviewingStartDate format='LL'}} <i
+                                                class="glyphicon glyphicon-minus"></i>
+                                            {{date question.reviewingFinishDate format='LL'}}
+                                        </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">试题详情</h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">场景描述</div>
+                </div>
+                <div class="panel-body">
+                    {{#if question.scenario}}
+                    <div>{{question.scenario}}</div>
+                    {{else}}
+                    <div><span class="alert alert-danger">暂无场景描述</span></div>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">题干</div>
+                </div>
+                <div id="question-stem" class="panel-body">
+                    {{#if question.stem}}
+                        {{question.stem}}
+                    {{else}}
+                    <span class="alert alert-danger">暂无题干内容</span>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">备注</div>
+                </div>
+                <div id="question-remark" class="panel-body">
+                    {{#if question.remark}}
+                        {{question.remark}}
+                    {{else}}
+                    <span class="alert alert-danger">暂无备注内容</span>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body" style="padding-left: 15px">
+                    <table class="table table-condensed table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>选项</th>
+                            <th align="center">内容</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each choices}}
+                        <tr>
+                            <td valign="top" style="width: 40px;">
+                                {{#if isCorrectAnswer}}
+                                <label class="label-lg label-success">{{choiceLabel}}. </label>
+                                {{else}}
+                                <label class="label-lg label-default">{{choiceLabel}}. </label>
+                                {{/if}}
+                            </td>
+                            <td>{{content}}</td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td colspan="2"><span class="alert alert-danger">暂无选项内容</span></td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+                <div id="review-panel" class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">试题评审</h3>
+        </div>
+        <div class="panel-body"></div>
+    </div>
+                <div id="final-review-panel" class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">试题再审</h3>
+        </div>
+        <div class="panel-body"></div>
+    </div>
+
+</div>

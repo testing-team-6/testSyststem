@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="admin" namespace="/web/admin" extends="default">
+        <default-interceptor-ref name="authStack"/>
+        <default-action-ref name="index"/>
+        <global-results>
+            <result name="admin.login.result" type="redirect">
+                <param name="location">
+                    index.action
+                </param>
+            </result>
+        </global-results>
+
+        <action name="index">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="tiles">/admin.tiles</result>
+        </action>
+
+        <action name="logout" class="cn.cstqb.exam.testmaker.actions.auth.LogoutAction">
+            <result name="success" type="redirect">
+                <param name="location">
+                    index.action
+                </param>
+            </result>
+        </action>
+
+        <action name="login" class="cn.cstqb.exam.testmaker.actions.auth.AdminLoginAction">
+            <interceptor-ref name="jsonStack"/>
+        </action>
+        <action name="export-project" class="cn.cstqb.exam.testmaker.actions.projects.ExportProjectAction"/>
+
+    </package>
+
+    <package name="admin-page-actions" namespace="/web/admin" extends="admin">
+        <!-- page actions -->
+        <action name="welcome">
+            <result name="success" type="tiles">/admin.welcome.tiles</result>
+        </action>
+        <action name="overview">
+            <result name="success">/WEB-INF/pages/admin/overview.jsp</result>
+        </action>
+        <action name="users">
+            <result name="success">/WEB-INF/pages/admin/users.jsp</result>
+        </action>
+        <action name="projects">
+            <result name="success">/WEB-INF/pages/admin/projects.jsp</result>
+        </action>
+
+        <!-- Syllabus pages-->
+        <action name="syllabus">
+            <result name="success">/WEB-INF/pages/admin/syllabus.jsp</result>
+        </action>
+
+        <!-- Questions-->
+        <action name="question-status">
+            <result name="success">/WEB-INF/pages/admin/questions.jsp</result>
+        </action>
+    </package>
+</struts>

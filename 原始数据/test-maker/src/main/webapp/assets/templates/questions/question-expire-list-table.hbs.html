@@ -1,0 +1,56 @@
+<thead>
+<tr>
+    <th>ID</th>
+    <th>知识点</th>
+    <th>状态</th>
+    <th>作者</th>
+    <th>编辑截止</th>
+    <th>评审</th>
+    <th>评审截止</th>
+    <th>质管</th>
+</tr>
+</thead>
+<tbody>
+    {{#each questions}}
+        <tr>
+            <td>{{id}}</td>
+            <td>
+                {{#with knowledgePoint}}
+                <span>{{number}}&nbsp;&ndash;&nbsp;{{title}}</span>
+                {{/with}}
+            </td>
+            <td>
+                {{#if status.start}}
+                    <span class="label-lg label-default">{{status.name}}</span>
+                {{else if status.finish}}
+                    <span class="label-lg label-info">{{status.name}}</span>
+                {{else}}
+                    <span>{{status.name}}</span>
+                {{/if}}
+            </td>
+            <td>
+                <span class="username">{{author.fullName}}</span>
+            </td>
+            <td>
+                {{#isAfterDate authoringFinishDate threshold='7'}}
+                <span class="label-lg label-warning">{{date authoringFinishDate format='LL'}}</span>
+                {{else}}
+                <span>{{date authoringFinishDate format='LL'}}</span>
+                {{/isAfterDate}}
+            </td>
+            <td>
+                {{#each reviewers}}
+                    <span class="username">{{fullName}}</span>
+                {{/each}}
+            </td>
+            <td>
+                {{#isAfterDate reviewingFinishDate threshold='7'}}
+                <span class="label-lg label-warning">{{date reviewingFinishDate format='LL'}}</span>
+                {{else}}
+                <span>{{date reviewingFinishDate format='LL'}}</span>
+                {{/isAfterDate}}
+            </td>
+            <td><span class="username">{{qualityAdmin.fullName}}</span></td>
+        </tr>
+    {{/each}}
+    </tbody>

@@ -1,0 +1,96 @@
+/*
+* Basic layouts
+*/
+/*@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}*/
+
+.navigation-panel {
+  background-color: fadeout(@gray-lighter,50%);
+  @media (min-width: 1400px){
+    width: 10%;
+  }
+
+  @media (max-width: 1366px){
+    width: 15%;
+  }
+
+}
+
+.main-panel {
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+.content-panel {
+  .main-panel;
+  padding-top: (@padding-large-vertical * 2);
+  padding-bottom: (@padding-large-vertical * 2);
+}
+
+.label-lg:extend(.label) {
+  font-size: 100%;
+}
+
+@media (min-width: @screen-md-min) {
+  .col-sm {
+    padding-left: 0;
+  }
+}
+
+/*
+* CODE BE LOW NEEDS TO BE REFACTORED/VERIFIED
+*/
+
+
+/*
+ * ========================= headers
+ * header styles for pages, sections
+ */
+
+.page-header {
+	&:extend(.page-header);
+	font-weight: normal;
+}
+
+
+/*
+ * Table related styles
+ */
+
+caption.table-caption {
+	text-align: left;
+	caption-side: top;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 80px 0 20px 0;
+}
+
+
+//textarea
+#texarea-container, .texarea-container {
+	padding: 15px 0;
+}
+
+//bootstrap glyph icons
+.glyphicon  {
+    padding: 0 @padding-xs-horizontal;
+//	padding-right: @padding-base-vertical;
+}
+.action-col-1 {
+  width: @action-col-base-with;
+}
+.action-col-2 {
+  width: (@action-col-base-with *2);
+}
+
+.action-col-3 {
+  width: (@action-col-base-with *3);
+}
+
+
+.column-separator {
+  border-right: 3px @brand-warning dotted !important;
+}

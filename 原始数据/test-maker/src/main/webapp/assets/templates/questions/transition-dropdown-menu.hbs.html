@@ -1,0 +1,11 @@
+<span class="dropdown">
+    <button id="submit-n-transit-btn" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        修改状态
+        <span class="caret"></span>
+    </button>
+    <ul id="{{dropDownListId}}" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+        {{#each statuses}}
+        <li role="presentation"><a class="transition-item" role="menuitem" href="#" data-id="{{id}}" data-index="{{@index}}">{{name}}</a></li>
+        {{/each}}
+    </ul>
+</span>

@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="test-maker:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9fbda22d-b3bf-491e-b5f3-9a53df1ce3f3" name="Default" comment="bug: admin log in, no poj" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - testmaker@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="test-maker" />
+  </component>
+  <component name="InvalidFacetManager">
+    <ignored-facets>
+      <facet id="test-maker/invalid/JPA" />
+      <facet id="test-maker/invalid/Web" />
+    </ignored-facets>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:/Program Files/apache-maven-3.6.3" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="ProjectId" id="1ZXHfov8jEiUMvEJutx0lYrB6nC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder5" value="5" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="96" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="102" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="102" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="127" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth5" value="895" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder5" value="5" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth0" value="97" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth1" value="104" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="104" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth3" value="97" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth4" value="98" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth5" value="897" />
+    <property name="FullScreen" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="LayoutCode.rearrangeEntries&lt;FreeMarker&gt;" value="false" />
+    <property name="LayoutCode.rearrangeEntriesHTML" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJSP" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJavaScript 1.5" value="false" />
+    <property name="LayoutCode.rearrangeEntriesXML" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="editorconfig.notification" value="Applied .editorconfig settings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunManager" selected="Maven.tomcat-run">
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="com.intellij.database.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="passParentEnv" value="true" />
+      <setting name="grailsApplicationRoot" value="" />
+      <setting name="launchBrowser" value="false" />
+      <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tomcat-run" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="tomcat7:run" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.14" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8088/test_maker_war_exploded/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="test-maker:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/test_maker_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_test-maker_2" />
+        <option name="HTTP_PORT" value="8088" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="55025" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="test-maker:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Maven.tomcat-run" />
+      <item itemvalue="Tomcat Server.tomcat" />
+    </list>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\LENOVO\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9fbda22d-b3bf-491e-b5f3-9a53df1ce3f3" name="Default" comment="" />
+      <created>1430717486855</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1430717486855</updated>
+      <workItem from="1430717490695" duration="968000" />
+      <workItem from="1430720367983" duration="6967000" />
+      <workItem from="1430792371603" duration="6247000" />
+      <workItem from="1430877688634" duration="4349000" />
+      <workItem from="1430964246512" duration="18405000" />
+      <workItem from="1431050956895" duration="3106000" />
+      <workItem from="1431063404615" duration="10613000" />
+      <workItem from="1431310271325" duration="10684000" />
+      <workItem from="1431396442332" duration="6727000" />
+      <workItem from="1431482067921" duration="13172000" />
+      <workItem from="1431569386788" duration="16471000" />
+      <workItem from="1431655187387" duration="7660000" />
+      <workItem from="1431684885468" duration="2567000" />
+      <workItem from="1431914167941" duration="7049000" />
+      <workItem from="1432001019796" duration="8946000" />
+      <workItem from="1432087214195" duration="6135000" />
+      <workItem from="1432178791613" duration="7408000" />
+      <workItem from="1432259708600" duration="4998000" />
+      <workItem from="1432605566131" duration="4075000" />
+      <workItem from="1432691649401" duration="20679000" />
+      <workItem from="1432778473758" duration="12254000" />
+      <workItem from="1432864399857" duration="13866000" />
+      <workItem from="1433123583294" duration="547000" />
+      <workItem from="1433124606431" duration="757000" />
+      <workItem from="1433126133409" duration="264000" />
+      <workItem from="1433143681693" duration="626000" />
+      <workItem from="1433296701243" duration="3137000" />
+      <workItem from="1433382321115" duration="4685000" />
+      <workItem from="1433470585763" duration="2617000" />
+      <workItem from="1433814697907" duration="10872000" />
+      <workItem from="1433901476253" duration="5927000" />
+      <workItem from="1433921474519" duration="2258000" />
+      <workItem from="1433991799101" duration="1394000" />
+      <workItem from="1434005516192" duration="366000" />
+      <workItem from="1434074390035" duration="1252000" />
+      <workItem from="1434333138871" duration="4631000" />
+      <workItem from="1434507370585" duration="6678000" />
+      <workItem from="1434591697366" duration="4898000" />
+      <workItem from="1434680126438" duration="2108000" />
+      <workItem from="1435628725044" duration="10546000" />
+      <workItem from="1436424168266" duration="1752000" />
+      <workItem from="1436752166344" duration="1795000" />
+      <workItem from="1436773660434" duration="3949000" />
+      <workItem from="1436838687389" duration="8131000" />
+      <workItem from="1436859558353" duration="717000" />
+      <workItem from="1439176811195" duration="1250000" />
+      <workItem from="1439264242198" duration="1758000" />
+      <workItem from="1439781671114" duration="5717000" />
+      <workItem from="1441086290425" duration="2114000" />
+      <workItem from="1445998657047" duration="10192000" />
+      <workItem from="1446089362869" duration="3281000" />
+      <workItem from="1446098066655" duration="3847000" />
+      <workItem from="1446173131318" duration="6090000" />
+      <workItem from="1446515833772" duration="55000" />
+      <workItem from="1446521010300" duration="7037000" />
+      <workItem from="1446530884658" duration="9431000" />
+      <workItem from="1446602384615" duration="10458000" />
+      <workItem from="1446627920825" duration="1219000" />
+      <workItem from="1446629264838" duration="1689000" />
+      <workItem from="1446688341591" duration="8963000" />
+      <workItem from="1446775610290" duration="3092000" />
+      <workItem from="1447038755038" duration="1954000" />
+      <workItem from="1447139579548" duration="2638000" />
+      <workItem from="1447234422240" duration="1049000" />
+      <workItem from="1447300839888" duration="2312000" />
+      <workItem from="1447304477939" duration="10252000" />
+      <workItem from="1447395420150" duration="262000" />
+      <workItem from="1447399926777" duration="44000" />
+      <workItem from="1447728932474" duration="23824000" />
+      <workItem from="1447811879700" duration="7089000" />
+      <workItem from="1447828911263" duration="1743000" />
+      <workItem from="1447984843254" duration="521000" />
+      <workItem from="1448001186623" duration="2235000" />
+      <workItem from="1448351781896" duration="5794000" />
+      <workItem from="1448362045440" duration="120000" />
+      <workItem from="1448439088355" duration="2329000" />
+      <workItem from="1448503183103" duration="9712000" />
+      <workItem from="1448589626227" duration="4117000" />
+      <workItem from="1448849063657" duration="10891000" />
+      <workItem from="1448935457161" duration="8301000" />
+      <workItem from="1449021560495" duration="13167000" />
+      <workItem from="1449107359435" duration="2330000" />
+      <workItem from="1449194232012" duration="3563000" />
+      <workItem from="1449453533137" duration="10314000" />
+      <workItem from="1449540753073" duration="4355000" />
+      <workItem from="1449629929805" duration="10466000" />
+      <workItem from="1449713266645" duration="11283000" />
+      <workItem from="1450060509784" duration="13549000" />
+      <workItem from="1450145049175" duration="4314000" />
+      <workItem from="1450230779568" duration="2142000" />
+      <workItem from="1450404260301" duration="8586000" />
+      <workItem from="1450663227887" duration="4079000" />
+      <workItem from="1450747625983" duration="3827000" />
+      <workItem from="1450921428945" duration="1418000" />
+      <workItem from="1451009639075" duration="2385000" />
+      <workItem from="1453184072433" duration="7127000" />
+      <workItem from="1453255148506" duration="2946000" />
+      <workItem from="1453258464289" duration="11499000" />
+      <workItem from="1453274796048" duration="6865000" />
+      <workItem from="1453341787441" duration="10012000" />
+      <workItem from="1453427641385" duration="11582000" />
+      <workItem from="1453687149744" duration="6689000" />
+      <workItem from="1453772722229" duration="9952000" />
+      <workItem from="1453859896057" duration="4421000" />
+      <workItem from="1453946451744" duration="13065000" />
+      <workItem from="1454031422791" duration="6069000" />
+      <workItem from="1454291978324" duration="6451000" />
+      <workItem from="1454377366953" duration="6436000" />
+      <workItem from="1454463527522" duration="4876000" />
+      <workItem from="1454551389147" duration="3821000" />
+      <workItem from="1454637475962" duration="4458000" />
+      <workItem from="1455414176930" duration="3498000" />
+      <workItem from="1455502358597" duration="5422000" />
+      <workItem from="1455588084276" duration="4552000" />
+      <workItem from="1455674279165" duration="7088000" />
+      <workItem from="1455760413135" duration="5150000" />
+      <workItem from="1455847221488" duration="13276000" />
+      <workItem from="1456193040125" duration="5483000" />
+      <workItem from="1456278926422" duration="1154000" />
+      <workItem from="1456365444280" duration="102000" />
+      <workItem from="1456365951776" duration="1938000" />
+      <workItem from="1456452503868" duration="1260000" />
+      <workItem from="1456797775178" duration="1338000" />
+      <workItem from="1456971867297" duration="2379000" />
+      <workItem from="1457575281298" duration="566000" />
+      <workItem from="1458185557771" duration="2412000" />
+      <workItem from="1458266556979" duration="2440000" />
+      <workItem from="1458611946591" duration="1723000" />
+      <workItem from="1458784782313" duration="544000" />
+      <workItem from="1458809391219" duration="742000" />
+      <workItem from="1458810269972" duration="1795000" />
+      <workItem from="1459131052963" duration="1651000" />
+      <workItem from="1459216603476" duration="2500000" />
+      <workItem from="1459389743007" duration="1406000" />
+      <workItem from="1459821360054" duration="3270000" />
+      <workItem from="1459994926440" duration="1829000" />
+      <workItem from="1460080802732" duration="535000" />
+      <workItem from="1460339907267" duration="1850000" />
+      <workItem from="1460598741151" duration="655000" />
+      <workItem from="1464833991233" duration="5825000" />
+      <workItem from="1465285448483" duration="1164000" />
+      <workItem from="1467269355539" duration="604000" />
+      <workItem from="1584065623399" duration="100000" />
+      <workItem from="1584065905190" duration="4397000" />
+      <workItem from="1584976720514" duration="33000" />
+      <workItem from="1584978634442" duration="210000" />
+      <workItem from="1584978935045" duration="2176000" />
+      <workItem from="1585007409461" duration="3218000" />
+      <workItem from="1585141722153" duration="870000" />
+      <workItem from="1585468223367" duration="242000" />
+      <workItem from="1585478366480" duration="853000" />
+      <workItem from="1585480208969" duration="2412000" />
+      <workItem from="1585907026594" duration="6767000" />
+      <workItem from="1585998409755" duration="1798000" />
+      <workItem from="1586012849267" duration="616000" />
+      <workItem from="1586048934105" duration="2383000" />
+    </task>
+    <task id="LOCAL-00001" summary="update table project_users while creating a project">
+      <created>1431599223217</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1431599223217</updated>
+    </task>
+    <task id="LOCAL-00002" summary="no need to validate session project  while updating user information">
+      <created>1431686671948</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1431686671948</updated>
+    </task>
+    <task id="LOCAL-00003" summary="serveral bugs fixed">
+      <created>1432718951567</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1432718951567</updated>
+    </task>
+    <task id="LOCAL-00004" summary="bug fixed">
+      <created>1432793481705</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1432793481705</updated>
+    </task>
+    <task id="LOCAL-00005" summary="no need to fill review form while changing status">
+      <created>1432890222448</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1432890222448</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update mail sending function according to the latest requirement">
+      <created>1436860031057</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1436860031057</updated>
+    </task>
+    <task id="LOCAL-00007" summary="bug fix for status change while in procedure QA">
+      <created>1446522393908</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1446522393908</updated>
+    </task>
+    <task id="LOCAL-00008" summary="bug fix for status change while in procedure QA further more, question-reviewing.js as reference">
+      <created>1446523219874</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1446523219874</updated>
+    </task>
+    <task id="LOCAL-00009" summary="several bug fix">
+      <created>1446631644309</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1446631644309</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add more detail">
+      <created>1447743782840</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1447743782840</updated>
+    </task>
+    <task id="LOCAL-00011" summary="rearrange the sequence of the task assign table">
+      <created>1447817246686</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1447817246686</updated>
+    </task>
+    <task id="LOCAL-00012" summary="UI adjust">
+      <created>1448003434555</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1448003434555</updated>
+    </task>
+    <task id="LOCAL-00013" summary="ui adjust">
+      <created>1448527191800</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1448527191800</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix issue about modal scroll">
+      <created>1449196355452</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1449196355452</updated>
+    </task>
+    <task id="LOCAL-00015" summary="resolve the issue -- knowledge-point cannot be deleted.">
+      <created>1449219902268</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1449219902268</updated>
+    </task>
+    <task id="LOCAL-00016" summary="according the new client's requirement, modify">
+      <created>1449462621679</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1449462621679</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add qa comment content in question-view modal">
+      <created>1449473147248</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1449473147248</updated>
+    </task>
+    <task id="LOCAL-00018" summary="bugFix">
+      <created>1449473885023</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1449473885023</updated>
+    </task>
+    <task id="LOCAL-00019" summary="knowledge point list sort">
+      <created>1449731572868</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1449731572868</updated>
+    </task>
+    <task id="LOCAL-00020" summary="generic list sort">
+      <created>1449739004462</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1449739004462</updated>
+    </task>
+    <task id="LOCAL-00021" summary="css update">
+      <created>1450084384343</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1450084384343</updated>
+    </task>
+    <task id="LOCAL-00022">
+      <created>1450089472632</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1450089472632</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Mail template with inner style can be shown in the mail client">
+      <created>1454040346759</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1454040346759</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Remove comment content verification while review status changed">
+      <created>1455525408716</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1455525408716</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="update table project_users while creating a project" />
+    <MESSAGE value="no need to validate session project  while updating user information" />
+    <MESSAGE value="serveral bugs fixed" />
+    <MESSAGE value="bug fixed" />
+    <MESSAGE value="no need to fill review form while changing status" />
+    <MESSAGE value="update mail sending function according to the latest requirement" />
+    <MESSAGE value="bug fix for status change while in procedure QA" />
+    <MESSAGE value="bug fix for status change while in procedure QA further more, question-reviewing.js as reference" />
+    <MESSAGE value="add more detail" />
+    <MESSAGE value="rearrange the sequence of the task assign table" />
+    <MESSAGE value="UI adjust" />
+    <MESSAGE value="ui adjust" />
+    <MESSAGE value="several bug fix" />
+    <MESSAGE value="Fix issue about modal scroll" />
+    <MESSAGE value="fix issue about modal scroll" />
+    <MESSAGE value="resolve the issue -- knowledge-point cannot be deleted." />
+    <MESSAGE value="according the new client's requirement, modify" />
+    <MESSAGE value="add qa comment content in question-view modal" />
+    <MESSAGE value="bugFix" />
+    <MESSAGE value="knowledge point list sort" />
+    <MESSAGE value="generic list sort" />
+    <MESSAGE value="css update" />
+    <MESSAGE value="Add field 'remark' to question" />
+    <MESSAGE value="Mail template with inner style can be shown in the mail client" />
+    <MESSAGE value="Remove comment content verification while review status changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove comment content verification while review status changed" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="233" y="22" key="#Project_Structure" timestamp="1585999688327">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="233" y="22" key="#Project_Structure/0.0.1280.720@0.0.1280.720" timestamp="1585999688327" />
+    <state x="421" y="119" key="FileChooserDialogImpl" timestamp="1585007481904">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="421" y="119" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1585007481904" />
+    <state width="1237" height="189" key="GridCell.Tab.0.bottom" timestamp="1586013787028">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="189" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1586013787028" />
+    <state width="1237" height="189" key="GridCell.Tab.0.center" timestamp="1586013787028">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="189" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1586013787028" />
+    <state width="1237" height="189" key="GridCell.Tab.0.left" timestamp="1586013787028">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="189" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1586013787028" />
+    <state width="1237" height="189" key="GridCell.Tab.0.right" timestamp="1586013787028">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="189" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1586013787028" />
+    <state width="218" height="477" key="HiddenNamespacesPopup" timestamp="1584979135587">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="218" height="477" key="HiddenNamespacesPopup/0.0.1280.720@0.0.1280.720" timestamp="1584979135587" />
+    <state x="144" y="0" key="SettingsEditor" timestamp="1585007485719">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="144" y="0" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1585007485719" />
+    <state x="336" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1586048933720">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="336" y="188" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1586048933720" />
+    <state x="0" y="0" width="617" height="720" key="find.popup" timestamp="1585999664195">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="0" y="0" width="617" height="720" key="find.popup/0.0.1280.720@0.0.1280.720" timestamp="1585999664195" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/cstqb/exam/testmaker/guice/WorkerModule.java</url>
+          <line>2</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/cstqb/exam/testmaker/Release.java</url>
+          <line>14</line>
+          <properties class="cn.cstqb.exam.testmaker.Release" method="&lt;init&gt;" />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+</project>
