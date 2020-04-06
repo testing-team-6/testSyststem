@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="frontEnd" namespace="/web/client" extends="default">
+        <default-interceptor-ref name="authStack"/>
+        <default-action-ref name="index"/>
+        <global-results>
+            <result name="index.login.result" type="redirect">index.action</result>
+        </global-results>
+        <action name="index">
+            <interceptor-ref name="defaultStack"/>
+            <result>/WEB-INF/pages/client/index.jsp</result>
+        </action>
+        <!-- tiles actions -->
+        <action name="welcome">
+            <result name="success" type="tiles">/welcome.tiles</result>
+        </action>
+
+        <action name="authenticate" class="cn.cstqb.exam.testmaker.actions.auth.AuthenticateAction" />
+
+        <action name="login" class="cn.cstqb.exam.testmaker.actions.auth.LoginAction">
+            <result name="input">index.action</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">welcome.action</param>
+            </result>
+        </action>
+        <action name="logout" class="cn.cstqb.exam.testmaker.actions.auth.LogoutAction" method="execute">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="redirect">
+                <param name="location">
+                    index.action
+                </param>
+            </result>
+        </action>
+        <action name="update-profile" class="cn.cstqb.exam.testmaker.actions.projects.current.UpdateProfileAction"/>
+        <action name="check-modified" class="cn.cstqb.exam.testmaker.actions.projects.current.UpdateProfileAction" method="checkIsModified"/>
+        <action name="change-password" class="cn.cstqb.exam.testmaker.actions.projects.current.ChangePasswordAction"/>
+        <action name="updateLastLogin" class="cn.cstqb.exam.testmaker.actions.auth.UpdateLastLoginAction"/>
+    </package>
+
+    <package name="pageActions" namespace="/web/client" extends="frontEnd">
+
+        <action name="dashboard">
+            <result name="success">/WEB-INF/pages/dashboard.jsp</result>
+        </action>
+
+        <!-- Page actions -->
+        <action name="project">
+            <result name="success">/WEB-INF/pages/client/project-management.jsp</result>
+        </action>
+
+        <!-- Question pages-->
+        <action name="item-management">
+            <result name="success">/WEB-INF/pages/client/question-management.jsp</result>
+        </action>
+        <action name="question-authoring">
+            <result name="success">/WEB-INF/pages/client/question-authoring.jsp</result>
+        </action>
+        <action name="question-reviewing">
+            <result name="success">/WEB-INF/pages/client/question-reviewing.jsp</result>
+        </action>
+        <action name="question-qa">
+            <result name="success">/WEB-INF/pages/client/question-qa.jsp</result>
+        </action>
+        <action name="item-create">
+            <result name="success">/WEB-INF/pages/question/item-create.jsp</result>
+        </action>
+    </package>
+
+    <package name="debugInit" namespace="/web/client" extends="default">
+        <action name="debug-*" class="cn.cstqb.exam.testmaker.actions.init.DebugInitAction" method="{1}" />
+    </package>
+</struts>

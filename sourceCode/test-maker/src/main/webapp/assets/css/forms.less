@@ -1,0 +1,38 @@
+/*
+ * form related setttings
+ */
+
+
+
+.title-border-form {
+ 	fieldset {
+ 		border: @border-width-base solid @legend-border-color !important;
+ 		border-radius: @border-radius-base;
+    	padding: @padding-xs-horizontal @padding-base-horizontal !important;
+    	margin: @line-height-computed 0 !important;
+        box-shadow:  0px 0px 0px 0px #000;
+        legend {
+        	width:auto;
+        	border-bottom:none;
+        	padding:0 @padding-xs-horizontal;
+        	font-size: @font-size-large !important;
+    		font-weight: bold !important;
+    		text-align: left !important;
+        }
+ 	}
+ }
+
+
+.form-panel {
+  margin-left:  (@grid-gutter-width / 2);
+  margin-right: (@grid-gutter-width / 2);
+  &:extend(.clearfix all);
+}
+
+.check-indicator {
+  padding-left: 0;
+}
+
+textarea.form-control {
+  margin-bottom: 8px;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress JpaDomInspection -->
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="test-maker" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <property name="hibernate.cache.use_second_level_cache" value="false" />
+            <!-- C3P0 connection pool -->
+            <property name="connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider"/>
+            <property name="hibernate.c3p0.timeout" value="600"/>
+            <property name="hibernate.c3p0.maxIdleTimeExcessConnections" value="20"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"  />
+            <!--  Connection testing settings -->
+            <property name="hibernate.c3p0.validate" value="true"/>
+            <property name="hibernate.c3p0.idle_test_period" value="120" />
+            <property name="hibernate.c3p0.automaticTestTable" value="_conTestTable" />
+        </properties>
+    </persistence-unit>
+</persistence>

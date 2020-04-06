@@ -1,0 +1,29 @@
+<form id="{{formId}}" class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-md-2 col-lg-1 control-label"> 评审内容 </label>
+        <div class="col-md-8">
+            <textarea id="qa-comment" name="content" rows="5" class="form-control" required></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-lg-offset-1 col-md-2">
+            <button id="q-review-submit-btn" type="submit" class="btn btn-primary">发布评价</button>
+        </div>
+        <div class="col-md-offset-2 col-lg-offset-1 col-md-2">
+                <span class="dropdown">
+                    <button id="submit-n-transit-btn" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        修改状态
+                        <span class="caret"></span>
+                    </button>
+                    <ul id="review-transition-list" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+                        {{#each statuses}}
+                        <li role="presentation"><a class="transition-item" role="menuitem" href="#" data-id="{{id}}" data-index="{{@index}}">{{name}}</a></li>
+                        {{/each}}
+                    </ul>
+                </span>
+        </div>
+        <div class="col-md-2">
+            <button type="reset" class="btn btn-default">重写</button>
+        </div>
+    </div>
+</form>
