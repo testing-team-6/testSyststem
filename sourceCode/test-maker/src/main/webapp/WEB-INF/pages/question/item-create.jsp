@@ -122,5 +122,4 @@
             </div>
     {{/each}}
 </script>
-
 <script src="${ctx}/assets/js/client/question-management/manage-questions.js"></script>

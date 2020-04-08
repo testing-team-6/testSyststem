@@ -55,6 +55,7 @@
         <action name="item-management">
             <result name="success">/WEB-INF/pages/client/question-management.jsp</result>
         </action>
+
         <action name="question-authoring">
             <result name="success">/WEB-INF/pages/client/question-authoring.jsp</result>
         </action>
@@ -63,6 +64,9 @@
         </action>
         <action name="question-qa">
             <result name="success">/WEB-INF/pages/client/question-qa.jsp</result>
+        </action>
+        <action name="paper-management">
+            <result name="success">/WEB-INF/pages/client/paper-management.jsp</result>
         </action>
         <action name="item-create">
             <result name="success">/WEB-INF/pages/question/item-create.jsp</result>
