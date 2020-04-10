@@ -1,11 +1,13 @@
 package cn.cstqb.exam.testmaker.actions.paper;
 
-import com.opensymphony.xwork2.ActionSupport;
+import cn.cstqb.exam.testmaker.entities.Paper;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 
 /**
@@ -15,9 +17,11 @@ import java.io.*;
  * Time: 9:18
  */
 
-public class ExportPaperAction extends ActionSupport {
+public class ExportPaperAction extends BasePaperAction {
     @Override
-    public String execute() throws Exception {
+    public String executeImpl() throws Exception {
+        generatePaperPdf(1);
+
         HttpServletResponse resp = ServletActionContext.getResponse();
         resp.setCharacterEncoding("utf-8");
         resp.setContentType("application/pdf");
@@ -33,5 +37,11 @@ public class ExportPaperAction extends ActionSupport {
         is.close();
         out.close();
         return SUCCESS;
+    }
+
+    private void generatePaperPdf(Integer paperId) {
+        System.out.println(paperService == null);
+        Paper paper = paperService.find(paperId);
+        System.out.println(paper.getName());
     }
 }

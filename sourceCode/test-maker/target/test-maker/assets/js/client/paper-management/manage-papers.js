@@ -10,6 +10,14 @@
     var newPaperModal = $('#new-paper-modal');
 
 
+    //form elements
+    var questionSelectList=$('#question-select-list');
+    var searchBox = $('#paper-keyword');
+    var submitPaperBtn = $('#save-paper-btn');
+    var paperName = $('#paper-name');
+
+    var questionList;
+
     dataTable.on('click','.edit-item', function (e) {
 
     });
@@ -61,5 +69,63 @@
                 projectUsers=data.users;
                 console.log('%s project users found for %s', projectUsers.length, CONTEXT.projectName);
             });
+    }
+
+    $('#export-paper-btn').click(function (e) {
+        exportPaper();
+    });
+
+    /**
+     * action for export paper
+     * @param paperId
+     */
+    function exportPaper() {
+        Dialogs.confirm('确定要导出组卷吗？操作可能会花费较长时间。', function (result) {
+            if (result) {
+                var url = CONTEXT.ctx + '/web/admin/export-paper.action';
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = "blob";    // 返回类型blob
+                xhr.onload = function () {
+                    // 请求完成
+                    if (this.status === 200) {
+                        // 返回200
+                        Dialogs.info('导出成功');
+                        var blob = this.response;
+                        var reader = new FileReader();
+                        reader.readAsDataURL(blob);
+                        reader.onload = function (e) {
+                            // 创建一个a标签用于下载
+                            var a = document.createElement('a');
+                            a.download = 'paper.pdf';
+                            a.href = e.target.result;
+                            $("body").append(a);
+                            a.click();
+                            $(a).remove();
+                        }
+                    }
+                };
+                // 发送ajax请求
+                xhr.send()
+            }
+        });
+    }
+
+    function loadQuestions() {
+        var url = CONTEXT.ctx + '/web/quetions/list.action';
+        console.log('Finding quetions from: %s', url);
+        return AjaxUtils.loadData(url)
+            .done(function (data, textStatus, jqXHR) {
+                questionList=data.aaData;
+                fillQuestionSelectList(data);
+            });
+    }
+    function fillQuestionSelectList(data) {
+        var source = $('#question-select-list-template').html();
+        var template = Handlebars.compile(source);
+        questionSelectList.empty();
+        questionSelectList.append('<option></option>');
+        questionSelectList.select2('val','');
+        questionSelectList.append(template(data));
     }
 })();

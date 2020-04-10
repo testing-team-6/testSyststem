@@ -31,7 +31,7 @@
             <interceptor-ref name="jsonStack"/>
         </action>
         <action name="export-project" class="cn.cstqb.exam.testmaker.actions.projects.ExportProjectAction"/>
-
+        <action name="export-paper" class="cn.cstqb.exam.testmaker.actions.paper.ExportPaperAction"/>
     </package>
 
     <package name="admin-page-actions" namespace="/web/admin" extends="admin">

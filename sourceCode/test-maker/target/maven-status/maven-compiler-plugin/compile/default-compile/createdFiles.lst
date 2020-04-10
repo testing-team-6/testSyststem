@@ -90,6 +90,7 @@ cn\cstqb\exam\testmaker\actions\chapter\DeleteChapterAction.class
 cn\cstqb\exam\testmaker\actions\questionChoice\DeleteQuestionChoiceAction.class
 cn\cstqb\exam\testmaker\dao\impl\QuestionStatusDaoImpl.class
 cn\cstqb\exam\testmaker\entities\Combine.class
+cn\cstqb\exam\testmaker\services\impl\PaperServiceImpl.class
 cn\cstqb\exam\testmaker\actions\questionLanguage\DeleteQuestionLanguageAction.class
 cn\cstqb\exam\testmaker\exceptions\EntityAlreadyExistsException.class
 cn\cstqb\exam\testmaker\services\impl\QuestionImageServiceImpl.class
@@ -277,6 +278,7 @@ cn\cstqb\exam\testmaker\actions\reporting\NotifyExpiringQuestionsAction.class
 cn\cstqb\exam\testmaker\dao\QuestionImageDao.class
 cn\cstqb\exam\testmaker\services\IQuestionChoiceImageService.class
 cn\cstqb\exam\testmaker\actions\projects\ExportProjectAction.class
+cn\cstqb\exam\testmaker\services\IPaperService.class
 cn\cstqb\exam\testmaker\services\IProjectService.class
 cn\cstqb\exam\testmaker\dao\impl\ProjectDaoImpl.class
 cn\cstqb\exam\testmaker\dao\impl\ReviewCommentDaoImpl.class
