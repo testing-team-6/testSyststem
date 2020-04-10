@@ -82,15 +82,31 @@
     function exportPaper() {
         Dialogs.confirm('确定要导出组卷吗？操作可能会花费较长时间。', function (result) {
             if (result) {
-                AjaxUtils.getData(CONTEXT.ctx + '/web/admin/export-paper.action',{})
-                    .done(function (data) {
+                var url = CONTEXT.ctx + '/web/admin/export-paper.action';
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = "blob";    // 返回类型blob
+                xhr.onload = function () {
+                    // 请求完成
+                    if (this.status === 200) {
+                        // 返回200
                         Dialogs.info('导出成功');
-
-                        var blob = new Blob([data], {type:"application/octet-stream"});
-                        var objectUrl = URL.createObjectURL(blob);
-                        console.log(objectUrl);
-                        window.location.href  = objectUrl;
-                    });
+                        var blob = this.response;
+                        var reader = new FileReader();
+                        reader.readAsDataURL(blob);
+                        reader.onload = function (e) {
+                            // 创建一个a标签用于下载
+                            var a = document.createElement('a');
+                            a.download = 'paper.pdf';
+                            a.href = e.target.result;
+                            $("body").append(a);
+                            a.click();
+                            $(a).remove();
+                        }
+                    }
+                };
+                // 发送ajax请求
+                xhr.send()
             }
         });
     }

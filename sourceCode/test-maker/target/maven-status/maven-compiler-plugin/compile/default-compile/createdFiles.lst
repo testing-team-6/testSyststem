@@ -179,7 +179,6 @@ cn\cstqb\exam\testmaker\entities\AbstractEntityStatus.class
 cn\cstqb\exam\testmaker\actions\questionImage\DeleteQuestionImageAction.class
 cn\cstqb\exam\testmaker\services\impl\DebugInitializationServiceImpl.class
 cn\cstqb\exam\testmaker\configuration\ApplicationConfigContext.class
-cn\cstqb\exam\testmaker\actions\paper\ExportPaperAction$1.class
 cn\cstqb\exam\testmaker\listeners\ApplicationInitListener.class
 cn\cstqb\exam\testmaker\util\ListSort$1.class
 cn\cstqb\exam\testmaker\util\PDFUtils.class
