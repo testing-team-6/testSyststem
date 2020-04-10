@@ -1,0 +1,80 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="project-details-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{project.name}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">基本属性</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <td class="active"><label>ID</label></td>
+                                <td>{{project.id}}</td>
+                                <td class="active"><label>项目名</label></td>
+                                <td>{{project.name}}</td>
+                                <td class="active"><label>主持人</label></td>
+                                <td>{{project.facilitator.fullName}}</td>
+                            </tr>
+                            <tr>
+                                <td class="active"><label>状态</label></td>
+                                <td>{{project.status.name}}</td>
+                                <td class="active"><label>开始日期</label></td>
+                                <td>{{date project.startDate format='LL'}}</td>
+                                <td class="active"><label>结束日期</label></td>
+                                <td>{{date project.finishDate format='LL'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="active"><label>大纲</label></td>
+                                <td>{{project.syllabus.level}} ({{project.syllabus.version}})</td>
+                                <td class="active"><label>导出日期</label></td>
+                                <td>{{date project.exportedOn format='LL'}}</td>
+                                <td class="active"><label>导出操作人员</label></td>
+                                <td>{{project.exportedBy.fullName}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">项目成员</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <table class="table table-bordered table-striped table-condensed">
+                                <tbody>
+                                    {{#each project.users}}
+                                        <tr>
+                                            <td>{{id}}</td>
+                                            <td>
+                                                {{#is id "===" ../project.facilitator.id}}
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                {{/is}}
+                                                {{fullName}}
+                                            </td>
+                                            <td>{{email}}</td>
+                                            <td>{{phone}}</td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+
+    </div>
+</div>

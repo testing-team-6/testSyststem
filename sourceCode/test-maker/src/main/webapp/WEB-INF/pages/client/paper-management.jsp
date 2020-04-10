@@ -15,6 +15,12 @@
                         <a id="show-edit-paper-form-btn" class="btn btn-primary navbar-btn-tm" data-toggle="modal"
                            role="button"><i class="glyphicon glyphicon-plus-sign"></i>新建组卷</a>
                     </li>
+
+                    <li>
+                        <a id="export-paper-btn" class="btn btn-primary navbar-btn-tm" data-toggle="modal"
+                           role="button"><i class="glyphicon glyphicon-plus-sign"></i>导出组卷</a>
+                    </li>
+
                     <li>
                         <a id="reload-paper-btn" href="#" class="btn btn-primary navbar-btn-tm" role="button"><i
                                 class="glyphicon glyphicon-refresh"></i>刷新</a>

@@ -1,0 +1,33 @@
+<thead>
+    <tr>
+        <th>ID</th>
+        <th>选项</th>
+        <th align="center">内容</th>
+        <th class="action-col-2"></th>
+    </tr>
+</thead>
+<tbody>
+    {{#each choices}}
+        <tr data-index="{{@index}}" data-id="{{id}}" data-label="{{choiceLabel}}" data-answer="{{isCorrectAnswer}}">
+            <td width="40px">{{id}}</td>
+            <td width="40px">
+                {{#if isCorrectAnswer}}
+                    <strong class="label-lg label-success">{{choiceLabel}}</strong>
+                {{else}}
+
+                    <strong class="label-lg label-default">{{choiceLabel}}</strong>
+                {{/if}}
+            </td>
+            <td>
+                <div class="choice-content">{{content}}</div>
+            </td>
+            <td>
+                <a href="#" class="edit-item"><i class="glyphicon glyphicon-edit"></i></a>
+                {{#if ../showDelete}}
+                <a href="#" class="delete-choice"><i class="glyphicon glyphicon-trash"></i></a>
+                {{/if}}
+                <a href="#" class="upload-image"><i class="glyphicon glyphicon-upload"></i></a>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>

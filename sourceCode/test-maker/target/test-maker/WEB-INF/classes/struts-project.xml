@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="admin-project-actions" namespace="/web/project" extends="default-auth">
+        <action name="view" class="cn.cstqb.exam.testmaker.actions.projects.ViewProjectAction" />
+        <action name="checkName" class="cn.cstqb.exam.testmaker.actions.projects.CheckNameProjectAction" />
+        <action name="create" class="cn.cstqb.exam.testmaker.actions.projects.CreateProjectAction" />
+        <action name="list-*" class="cn.cstqb.exam.testmaker.actions.projects.ListProjectAction" method="{1}" />
+    </package>
+
+    <package name="project-actions-logged-in" namespace="/web/project/current" extends="default-auth">
+        <action name="get" class="cn.cstqb.exam.testmaker.actions.projects.current.GetCurrentProjectAction" />
+        <action name="list-questions" class="cn.cstqb.exam.testmaker.actions.projects.current.ListQuestions" />
+        <action name="paging" class="cn.cstqb.exam.testmaker.actions.projects.current.ListQuestions" method="paging" />
+        <action name="list-*-questions" class="cn.cstqb.exam.testmaker.actions.projects.current.ListProjectQuestionsByRole" method="{1}" />
+        <action name="save-question" class="cn.cstqb.exam.testmaker.actions.projects.current.SaveProjectQuestion" />
+        <action name="view-question" class="cn.cstqb.exam.testmaker.actions.projects.current.LoadProjectQuestionDetails" />
+        <action name="list-users" class="cn.cstqb.exam.testmaker.actions.projects.current.ListProjectUserAction" />
+        <action name="save-users" class="cn.cstqb.exam.testmaker.actions.projects.current.UpdateProjectUserAction" />
+        <action name="update" class="cn.cstqb.exam.testmaker.actions.projects.current.UpdateProjectAction" />
+    </package>
+
+    <package name="project-status-actions" namespace="/web/project/status" extends="default-auth">
+        <action name="list" class="cn.cstqb.exam.testmaker.actions.projects.ListProjectStatusAction"/>
+        <action name="*projectStatus" class="cn.cstqb.exam.testmaker.actions.projects.ManageProjectStatusAction" method="{1}"/>
+
+    </package>
+</struts>

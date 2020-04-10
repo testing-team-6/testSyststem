@@ -62,4 +62,28 @@
                 console.log('%s project users found for %s', projectUsers.length, CONTEXT.projectName);
             });
     }
+
+    $('#export-paper-btn').click(function (e) {
+        exportPaper();
+    });
+
+    /**
+     * action for export paper
+     * @param paperId
+     */
+    function exportPaper() {
+        Dialogs.confirm('确定要导出组卷吗？操作可能会花费较长时间。', function (result) {
+            if (result) {
+                AjaxUtils.getData(CONTEXT.ctx + '/web/admin/export-paper.action',{})
+                    .done(function (data) {
+                        Dialogs.info('导出成功');
+
+                        var blob = new Blob([data], {type:"application/octet-stream"});
+                        var objectUrl = URL.createObjectURL(blob);
+                        console.log(objectUrl);
+                        window.location.href  = objectUrl;
+                    });
+            }
+        });
+    }
 })();

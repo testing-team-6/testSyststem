@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<!--suppress Struts2ModelInspection -->
+<struts>
+    <constant name="struts.devMode" value="false"/>
+    <constant name="struts.i18n.reload" value="true"/>
+    <constant name="struts.custom.i18n.resources" value="applicationResources"/>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.multipart.saveDir" value="/tmp"/>
+    <constant name="struts.json.dateformat" value="yyyy-MM-dd HH:mm:ss"/>
+    <constant name="struts.multipart.maxSize" value="10000000"/>
+
+    <!-- loads modular struts configuration files -->
+    <include file="struts-front.xml"/>
+    <include file="struts-admin.xml"/>
+    <include file="struts-user.xml"/>
+    <include file="struts-syllabus.xml"/>
+    <include file="struts-project.xml"/>
+    <include file="struts-question.xml"/>
+    <include file="struts-review.xml"/>
+    <include file="struts-reporting.xml"/>
+
+    <bean class="cn.cstqb.exam.testmaker.converters.JSONDatePopulator" name="jsonDateParser"/>
+
+    <package name="default" namespace="/web" extends="json-default,struts-default">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+            <!--<result-type name="json" class="org.apache.struts2.json.JSONResult"/>-->
+            <result-type name="json" class="cn.cstqb.exam.testmaker.results.CustomJSONResult"/>
+        </result-types>
+
+        <interceptors>
+            <interceptor name="url" class="cn.cstqb.exam.testmaker.interceptors.URLInterceptor"/>
+            <interceptor name="auth" class="cn.cstqb.exam.testmaker.interceptors.AuthenticationInterceptor"/>
+            <interceptor name="customJson" class="cn.cstqb.exam.testmaker.interceptors.CustomJSONInterceptor">
+                <param name="debug">true</param>
+                <param name="contentType">application/json</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors
+                </param>
+            </interceptor>
+
+            <interceptor-stack name="authStack">
+                <interceptor-ref name="auth"/>
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="customJson"/>
+            </interceptor-stack>
+            <interceptor-stack name="jsonStack">
+                <interceptor-ref name="customJson"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="jsonStack"/>
+
+        <global-results>
+            <result name="index.login.result" type="redirect">index.action</result>
+            <result name="exception" type="json">
+                <param name="errorCode">400</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors
+                </param>
+            </result>
+            <result name="error" type="json">
+                <param name="errorCode">412</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="AlreadyExist" type="json">
+                <param name="errorCode">409</param>
+            </result>
+            <result name="success" type="json">
+                <param name="statusCode">200</param>
+                <param name="enableGZIP">true</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors,
+                    .*password.*
+                </param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="NoProjects" type="json">
+                <param name="errorCode">404</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="NotFound" type="json">
+                <param name="errorCode">404</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="NoContent" type="json">
+                <param name="errorCode">204</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <!--604 means the same as 304, but 304 cannot contain message body. -->
+            <result name="NotModified" type="json">
+                <param name="errorCode">604</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="NotModified_304" type="json">
+                <param name="errorCode">304</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <!--            <result name="found" type="json">
+                            <param name="statusCode">302</param>
+                            <param name="excludeNullProperties">true</param>
+                        </result>-->
+            <result name="InvalidForm" type="json">
+                <param name="errorCode">412</param>
+                <param name="errorMessage">Invalid form data.</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors,
+                    .*password.*
+                </param>
+            </result>
+
+            <result name="NotExisted" type="json">
+                <param name="errorCode">410</param>
+            </result>
+            <result name="UserLocked" type="json">
+                <param name="errorCode">403</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="UserLoginFailed" type="json">
+                <param name="errorCode">401</param>
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="Unauthorized" type="json">
+                <param name="errorCode">401</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors
+                </param>
+            </result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="org.hibernate.exception.ConstraintViolationException" result="exception"/>
+        </global-exception-mappings>
+    </package>
+
+    <!--
+        Skeleton package used for other packages to extend to get the authentication capability
+    -->
+    <package name="default-auth" extends="default">
+        <default-interceptor-ref name="authStack"/>
+    </package>
+</struts>

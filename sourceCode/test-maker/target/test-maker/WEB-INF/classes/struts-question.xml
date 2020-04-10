@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="question-actions" namespace="/web/question" extends="default-auth">
+        <action name="create" class="cn.cstqb.exam.testmaker.actions.question.CreateQuestionAction"/>
+        <action name="view" class="cn.cstqb.exam.testmaker.actions.question.ViewQuestionAction"/>
+        <action name="change-status" class="cn.cstqb.exam.testmaker.actions.question.ChangeQuestionStatusAction"/>
+    </package>
+
+    <package name="question-image-actions" namespace="/web/question/image" extends="default-auth">
+        <action name="list" class="cn.cstqb.exam.testmaker.actions.questionImage.ListQuestionImageAction"/>
+        <action name="save" class="cn.cstqb.exam.testmaker.actions.questionImage.CreateQuestionImageAction">
+            <result name="success" type="json">
+                <param name="statusCode">200</param>
+                <param name="enableGZIP">true</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors,
+                    .*password.*
+                </param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="input" type="json"/>
+        </action>
+        <action name="update" class="cn.cstqb.exam.testmaker.actions.questionImage.UpdateQuestionImageAction"/>
+        <action name="delete" class="cn.cstqb.exam.testmaker.actions.questionImage.DeleteQuestionImageAction"/>
+    </package>
+
+    <package name="questions" namespace="/web" extends="default-auth">
+        <action name="question-create-*" class="cn.cstqb.exam.testmaker.actions.question.CreateQuestionAction" method="{1}"/>
+    </package>
+
+    <package name="question-status-actions" namespace="/web/question/status" extends="default-auth">
+        <action name="save" class="cn.cstqb.exam.testmaker.actions.questionstatus.SaveStatusAction"/>
+        <action name="list" class="cn.cstqb.exam.testmaker.actions.questionstatus.ListStatusAction"/>
+        <action name="get-initial-status" class="cn.cstqb.exam.testmaker.actions.questionstatus.GetTransitionForInitialStatus"/>
+        <action name="batch-update-initial" class="cn.cstqb.exam.testmaker.actions.questionstatus.BatchUpdateInitialStatusAction"/>
+        <action name="delete" class="cn.cstqb.exam.testmaker.actions.questionstatus.DeleteStatusAction"/>
+        <action name="list-all-transitions" class="cn.cstqb.exam.testmaker.actions.questionstatus.ListAllTransitionsAction"/>
+        <action name="list-transitions" class="cn.cstqb.exam.testmaker.actions.questionstatus.ListTransitionsAction"/>
+        <action name="save-transitions" class="cn.cstqb.exam.testmaker.actions.questionstatus.SaveTransitionalStatusAction"/>
+        <action name="delete-transitions" class="cn.cstqb.exam.testmaker.actions.questionstatus.DeleteTransitionalStatusAction"/>
+    </package>
+
+    <package name="question-choice-actions" namespace="/web/question/choice" extends="default-auth">
+        <action name="save" class="cn.cstqb.exam.testmaker.actions.questionChoice.SaveOrUpdateQuestionChoiceAction"/>
+        <action name="delete" class="cn.cstqb.exam.testmaker.actions.questionChoice.DeleteQuestionChoiceAction"/>
+        <action name="list" class="cn.cstqb.exam.testmaker.actions.questionChoice.ListQuestionChoiceAction"/>
+    </package>
+
+    <package name="choice-image-actions" namespace="/web/question/choice/image" extends="default-auth">
+        <action name="list" class="cn.cstqb.exam.testmaker.actions.questionChoiceImage.ListQuestionChoiceImageAction"/>
+        <action name="save" class="cn.cstqb.exam.testmaker.actions.questionChoiceImage.CreateQuestionChoiceImageAction">
+            <result name="success" type="json">
+                <param name="statusCode">200</param>
+                <param name="enableGZIP">true</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeProperties">
+                    actionMessages,
+                    errorMessages,
+                    errors,
+                    fieldErrors,
+                    .*password.*
+                </param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            <result name="input" type="json"/>
+        </action>
+        <action name="update" class="cn.cstqb.exam.testmaker.actions.questionChoiceImage.UpdateChoiceImageAction"/>
+        <action name="delete" class="cn.cstqb.exam.testmaker.actions.questionChoiceImage.DeleteQuestionChoiceImageAction"/>
+    </package>
+
+    <package name="question-type-actions" namespace="/web/question/type" extends="default-auth">
+        <action name="create" class="cn.cstqb.exam.testmaker.actions.questionType.SaveOrUpdateQuestionTypeAction"/>
+        <action name="update" class="cn.cstqb.exam.testmaker.actions.questionType.UpdateQuestionTypeAction"/>
+        <action name="delete" class="cn.cstqb.exam.testmaker.actions.questionType.DeleteQuestionTypeAction"/>
+        <action name="list" class="cn.cstqb.exam.testmaker.actions.questionType.ListQuestionTypeAction"/>
+    </package>
+
+    <package name="question-language-actions" namespace="/web/question/language" extends="default-auth">
+        <action name="create" class="cn.cstqb.exam.testmaker.actions.questionLanguage.SaveOrUpdateQuestionLanguageAction"/>
+        <action name="update" class="cn.cstqb.exam.testmaker.actions.questionLanguage.UpdateQuestionLanguageAction"/>
+        <action name="delete" class="cn.cstqb.exam.testmaker.actions.questionLanguage.DeleteQuestionLanguageAction"/>
+        <action name="list" class="cn.cstqb.exam.testmaker.actions.questionLanguage.ListQuestionLanguageAction"/>
+    </package>
+</struts>
