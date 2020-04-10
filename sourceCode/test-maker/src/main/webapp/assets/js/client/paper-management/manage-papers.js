@@ -10,6 +10,14 @@
     var newPaperModal = $('#new-paper-modal');
 
 
+    //form elements
+    var questionSelectList=$('#question-select-list');
+    var searchBox = $('#paper-keyword');
+    var submitPaperBtn = $('#save-paper-btn');
+    var paperName = $('#paper-name');
+
+    var questionList;
+
     dataTable.on('click','.edit-item', function (e) {
 
     });
@@ -85,5 +93,23 @@
                     });
             }
         });
+    }
+
+    function loadQuestions() {
+        var url = CONTEXT.ctx + '/web/quetions/list.action';
+        console.log('Finding quetions from: %s', url);
+        return AjaxUtils.loadData(url)
+            .done(function (data, textStatus, jqXHR) {
+                questionList=data.aaData;
+                fillQuestionSelectList(data);
+            });
+    }
+    function fillQuestionSelectList(data) {
+        var source = $('#question-select-list-template').html();
+        var template = Handlebars.compile(source);
+        questionSelectList.empty();
+        questionSelectList.append('<option></option>');
+        questionSelectList.select2('val','');
+        questionSelectList.append(template(data));
     }
 })();

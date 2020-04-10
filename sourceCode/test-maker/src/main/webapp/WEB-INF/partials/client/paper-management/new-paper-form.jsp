@@ -16,9 +16,6 @@
                             <div class="col-md-3">
                                 <input id="paper-id" class="form-control" type="text" readonly>
                             </div>
-                            <label class="cold-md-2">当前状态</label>
-                            <span id="paper-status" class="form-control-static"></span>
-                            <span id="change-status-container"></span>
                         </div>
                         <fieldset>
                             <legend>${PROJECT.syllabus.level} (${PROJECT.syllabus.version})</legend> //edit
@@ -45,3 +42,8 @@
         </div>
     </div>
 </div>
+<script id="question-select-list-template" type="text/x-handlebars-template">
+    {{#each aaData}}
+    <option value="{{id}}" data-index="{{@index}}">{{number}} {{title}}</option>
+    {{/each}}
+</script>
