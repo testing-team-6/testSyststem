@@ -12,5 +12,5 @@ public interface IPaperService {
     int size();
     boolean exists(Paper paper);
     void delete(Paper paper);
-    Paper saveorUpate(Paper paper);
+    void saveOrUpdate(Paper paper);
 }

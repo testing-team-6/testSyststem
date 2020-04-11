@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkState;
 
 public class PaperServiceImpl implements IPaperService {
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -40,7 +41,7 @@ public class PaperServiceImpl implements IPaperService {
         if (paper == null) return;
         paperDao.delete(paper);
     }
-    public Paper saveorUpate(Paper paper){
+    public void saveOrUpdate(Paper paper){
         if (paper == null) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Paper is null. Operation aborted.");
@@ -49,7 +50,7 @@ public class PaperServiceImpl implements IPaperService {
         }
 
 
-        Paper persisted = paperdao.findById(paper.getId());
+        Paper persisted = paperDao.findById(paper.getId());
         if (persisted == null) {
             checkState(paper.validateBasicFields(), "Missing required fields in question: %s", paper);
             paperDao.create(paper);
