@@ -18,17 +18,17 @@
                             </div>
                         </div>
                         <fieldset>
-                            <legend>${PROJECT.syllabus.level} (${PROJECT.syllabus.version})</legend> //edit
+                            <legend>${PROJECT.syllabus.level} (${PROJECT.syllabus.version})</legend>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">选题</label>
-                                <div class="col-md-4 col-lg-4">
-                                    <select id="question-select" class="form-control select-list" data-placeholder="选择题目" multiple="multiple">
+                                <div class="col-md-2">
+                                    <select id="question-select-list" class="form-control select-list" data-placeholder="选择题目" multiple="multiple">
                                         <option></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">组卷名</label>
-                                        <input id="paper-name" class="form-control input-group-sm">
+                                        <input id="paper-name" class="form-control input-group-md">
                                 </div>
                             </div>
                         </fieldset>

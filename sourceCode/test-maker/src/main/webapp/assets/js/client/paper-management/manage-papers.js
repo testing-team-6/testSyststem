@@ -4,7 +4,7 @@
      * Definition of DOM variables
      */
     var dataTable = $('#paper-mgmt-table');
-    var questionForm = $('#edit-paper-form');
+    var paperForm = $('#edit-paper-form');
 
     var toggleFormBtn = $('#show-edit-paper-form-btn');
     var newPaperModal = $('#new-paper-modal');
@@ -74,7 +74,43 @@
     $('#export-paper-btn').click(function (e) {
         exportPaper();
     });
+    toggleFormBtn.click(function (e) {
+        newPaperModal.modal('toggle');
+    });
+    submitPaperBtn.click(function (e) {
+        paperForm.submit();
+    });
+    /**
+     * Submit paper form
+     */
+    paperForm.submit(function (e) {
+        e.preventDefault();
+        if (!validatePaperForm()) {
+            return false;
+        }
+        savePaper();
+    });
+    //check form is valid or not
+    function validatePaperForm() {
+        if (!paperForm.valid()) {
+            return false;
+        }
+        if(paperName.val() === ''){
+            Dialogs.warning('请输入试卷名！');
+            return false;
+        }
+        if (questionSelectList.val() === ''){
+            Dialogs.warning('请选择试题！');
+            return false;
+        }
+        return true;
+    }
 
+    /**
+     * The core function to submit paper to the server.
+     */
+    function savePaper() {
+    }
     /**
      * action for export paper
      * @param paperId
@@ -102,11 +138,11 @@
                             $("body").append(a);
                             a.click();
                             $(a).remove();
-                        }
+                        };
                     }
                 };
                 // 发送ajax请求
-                xhr.send()
+                xhr.send();
             }
         });
     }
