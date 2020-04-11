@@ -189,7 +189,7 @@
 
     /**
      * submit question changes without changing status
-     */0.
+     */
     submitQuestionFormBtn.click(function (e) {
         e.preventDefault();
         console.log('About to submit edit question');

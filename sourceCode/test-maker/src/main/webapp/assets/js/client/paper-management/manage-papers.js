@@ -8,15 +8,14 @@
 
     var toggleFormBtn = $('#show-edit-paper-form-btn');
     var newPaperModal = $('#new-paper-modal');
-
-
+    
     //form elements
     var questionSelectList=$('#question-select-list');
     var searchBox = $('#paper-keyword');
     var submitPaperBtn = $('#save-paper-btn');
     var paperName = $('#paper-name');
 
-    var questionList;
+    var papers,questionList;
 
     /*
      * action urls
@@ -24,7 +23,14 @@
     var listProjectUserURL=CONTEXT.ctx + '/web/project/current/list-users.action';
     var paperPagingUrl=CONTEXT.ctx + '/web/project/current/paging.action';
     var savePaperURL= CONTEXT.ctx + '/web/project/current/save-paper.action';
+    var listPapersURL = CONTEXT.ctx + '/web/project/current/list-papers.action';
 
+    var pagingHelper = new PaginationHelper(paperPagingUrl, listPapersURL, function (data) {
+        papers = data.papers;
+        console.log('%s papers loaded.', papers.length);
+        displayPapers(papers);
+        loadTransitionsForInitialStatus();
+    });
     dataTable.on('click','.edit-item', function (e) {
 
     });

@@ -24,4 +24,38 @@ public class PaperServiceImpl implements IPaperService {
         checkArgument(id>0,"The project id must be greater than zero. %s", id);
         return paperDao.findById(id);
     }
+    @Override
+    public int size() {
+        return paperDao.size().intValue();
+    }
+
+    public boolean exists(Paper paper) {
+        Paper persisted = null;
+        if (paper.getId() != null && paper.getId() > 0) {
+            persisted =  paperDao.findById(paper.getId());
+        }
+        return persisted != null;
+    }
+    public void delete(Paper paper) {
+        if (paper == null) return;
+        paperDao.delete(paper);
+    }
+    public Paper saveorUpate(Paper paper){
+        if (paper == null) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Paper is null. Operation aborted.");
+            }
+            return;
+        }
+
+
+        Paper persisted = paperdao.findById(paper.getId());
+        if (persisted == null) {
+            checkState(paper.validateBasicFields(), "Missing required fields in question: %s", paper);
+            paperDao.create(paper);
+        } else {
+            checkState(paper.validate(), "Missing required fields in question: %s", paper);
+            paperDao.update(paper);
+        }
+    }
 }

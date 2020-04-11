@@ -119,4 +119,7 @@ public class Paper extends AbstractBaseEntity {
                 && name != null
                 ;
     }
+    public boolean validateBasicFields(){
+        return  name != null;
+    }
 }
