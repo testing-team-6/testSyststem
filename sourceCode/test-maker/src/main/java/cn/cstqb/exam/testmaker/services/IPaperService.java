@@ -9,4 +9,8 @@ public interface IPaperService {
      * @return
      */
     Paper find(int id);
+    int size();
+    boolean exists(Paper paper);
+    void delete(Paper paper);
+    Paper saveorUpate(Paper paper);
 }
