@@ -10,13 +10,14 @@
     var newPaperModal = $('#new-paper-modal');
     
     //form elements
+    var idSection = $('#p-id-section');
     var questionSelectList=$('#question-select-list');
     var searchBox = $('#paper-keyword');
     var submitPaperBtn = $('#save-paper-btn');
     var paperName = $('#paper-name');
 
-    var papers,questionList;
-
+    var papers,paperList,questionList;
+    var selectedPaper = {};
     /*
      * action urls
      */
@@ -49,7 +50,6 @@
     dataTable.on('click', '.delete-item', function (e) {
 
     });
-
     function displayPapers(papers) {
         AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/questions/paper-list-table.hbs.html', function (template) {
             var templateData = {
@@ -71,10 +71,8 @@
             .done(function (data, textStatus, jqXHR) {
                 papers=data.papers;
                 displayPapers(papers);
-            })
-            .done(loadTransitionsForInitialStatus);
+            });
     }
-
 
     function loadProjectUsers() {
         return $.get(listProjectUserURL, {projectName: CONTEXT.projectName})
@@ -87,12 +85,42 @@
     $('#export-paper-btn').click(function (e) {
         exportPaper();
     });
+
     toggleFormBtn.click(function (e) {
         newPaperModal.modal('toggle');
     });
+
     submitPaperBtn.click(function (e) {
         paperForm.submit();
     });
+
+    paperForm.submit(function (e) {
+        e.preventDefault();
+        if (!validatePaperForm()) {
+            return false;
+        }
+        savePaper();
+    });
+
+    initialize();
+    function initialize() {
+        pagingHelper.loadPagingInfo();
+        loadData();
+        new TableFilter(dataTable, searchBox);
+        initNewPaperModal();
+    }
+    function initNewPaperModal() {
+        loadQuetions(null);
+        loadProjectUsers();
+        $('.select-list').select2({width: '100%'});
+        $('.select-list-simple').select2({width: '100%', minimumResultsForSearch: -1});
+    }
+    function bindSelectedToForm() {
+        console.log('The selected paper is as below');
+        console.dir(selectedPaper);
+        loadQuetions(selectedPaper.id);
+        idSection.find('input').val(selectedPaper.id);
+    }
     /**
      * Submit paper form
      */
@@ -123,6 +151,28 @@
      * The core function to submit paper to the server.
      */
     function savePaper() {
+        bindToModel();
+        AjaxUtils.postData(savePaperURL, {paper: selectedPaper}, false).done(function () {
+            //if it's an update action, just update current page. otherwise go to the last page.
+            if(!_.isUndefined(selectedPaper.id)) {
+                pagingHelper.highlightCurrentPage();
+            }else{
+                pagingHelper.goToLastPage(!selectedPaper.id);
+            }
+            wrapUp();
+            loadData();
+        });
+    }
+    /**
+     * Binds the form values to the paper model variable
+     */
+    function bindToModel() {
+        var pId = paperForm.find('#paper-id').val();
+        if(pId !== ''){
+            selectedPaper.id = pId;
+        }
+        selectedPaper.questions = questionSelectList.val();
+        selectedPaper.name = paperName.val();
     }
     /**
      * action for export paper
@@ -160,13 +210,15 @@
         });
     }
 
-    function loadQuestions() {
-        var url = CONTEXT.ctx + '/web/quetions/question-list.action';
+    function loadQuetions(paperId) {
+        var url = CONTEXT.ctx + '/web/papers/question/list.action';
         console.log('Finding quetions from: %s', url);
-        return AjaxUtils.loadData(url)
+        return AjaxUtils.loadData(url,{paperId:paperId})
             .done(function (data, textStatus, jqXHR) {
-                questionList=data.aaData;
-                fillQuestionSelectList(data);
+                questionList = data.aaData;
+                if(paperId === null){
+                    fillQuestionSelectList(data);
+                }
             });
     }
     function fillQuestionSelectList(data) {
@@ -176,5 +228,11 @@
         questionSelectList.append('<option></option>');
         questionSelectList.select2('val','');
         questionSelectList.append(template(data));
+    }
+    function wrapUp() {
+        selectedPaper = {};
+        paperForm[0].reset();
+        newPaperModal.modal('hide');
+        questionSelectList.val().trigger('change');
     }
 })();

@@ -392,7 +392,7 @@
         reader.readAsDataURL(selectedChoiceImage);
         reader.onload = function (ev) {
             choiceImagePreview.html("<img style='height: 300px' src='" + ev.target.result + "' />");
-        }
+        };
     });
 
 
@@ -506,7 +506,7 @@
         }
         reader.onload = function (ev) {
             questionImagePreview.html('<img style="height: 300px" src="' + ev.target.result + '" class="img-responsive img-thumbnail">');
-        }
+        };
     });
 
     /**

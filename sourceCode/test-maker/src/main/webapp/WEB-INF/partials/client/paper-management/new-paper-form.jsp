@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form id="edit-paper-form" class="form-horizontal title-border-form">
+                    <form id="edit-paper-form" class="form-horizontal title-border-form col-md-5">
                         <div id="p-id-section" class="form-group hidden">
                             <label class="col-md-2 control-label">ID</label>
                             <div class="col-md-3">
