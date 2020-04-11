@@ -18,6 +18,13 @@
 
     var questionList;
 
+    /*
+     * action urls
+     */
+    var listProjectUserURL=CONTEXT.ctx + '/web/project/current/list-users.action';
+    var paperPagingUrl=CONTEXT.ctx + '/web/project/current/paging.action';
+    var savePaperURL= CONTEXT.ctx + '/web/project/current/save-paper.action';
+
     dataTable.on('click','.edit-item', function (e) {
 
     });
@@ -148,7 +155,7 @@
     }
 
     function loadQuestions() {
-        var url = CONTEXT.ctx + '/web/quetions/list.action';
+        var url = CONTEXT.ctx + '/web/quetions/question-list.action';
         console.log('Finding quetions from: %s', url);
         return AjaxUtils.loadData(url)
             .done(function (data, textStatus, jqXHR) {
