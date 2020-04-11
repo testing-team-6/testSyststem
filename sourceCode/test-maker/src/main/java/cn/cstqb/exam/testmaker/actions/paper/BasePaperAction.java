@@ -13,7 +13,7 @@ import javax.inject.Inject;
  */
 public abstract class BasePaperAction extends BaseAction {
     @Inject protected IPaperService paperService;
-
+    @Inject protected Paper paper;
     public BasePaperAction() {
         super();
         injector.injectMembers(this);
@@ -22,5 +22,13 @@ public abstract class BasePaperAction extends BaseAction {
     @Override
     public void validateInput() {
 
+    }
+
+    public Paper getPaper() {
+        return paper;
+    }
+
+    public void setPaper(Paper paper) {
+        this.paper = paper;
     }
 }
