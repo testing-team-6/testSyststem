@@ -26,11 +26,11 @@
                                         <option></option>
                                     </select>
                                 </div>
+                            </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">组卷名</label>
                                         <input id="paper-name" class="form-control input-group-md">
                                 </div>
-                            </div>
                         </fieldset>
                     </form>
                 </div>
