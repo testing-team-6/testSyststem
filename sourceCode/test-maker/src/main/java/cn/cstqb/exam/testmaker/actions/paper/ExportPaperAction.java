@@ -1,11 +1,9 @@
 package cn.cstqb.exam.testmaker.actions.paper;
 
-import cn.cstqb.exam.testmaker.dao.PaperDao;
-import cn.cstqb.exam.testmaker.dao.impl.PaperDaoImpl;
+
 import cn.cstqb.exam.testmaker.entities.Paper;
 import cn.cstqb.exam.testmaker.entities.Question;
 import cn.cstqb.exam.testmaker.entities.QuestionChoice;
-import cn.cstqb.exam.testmaker.util.PDFUtils;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -19,6 +17,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
+
+import static org.apache.struts2.ServletActionContext.getServletContext;
 
 
 /**
@@ -38,7 +38,7 @@ public class ExportPaperAction extends BasePaperAction {
         resp.setContentType("application/pdf");
         resp.setHeader("Content-Disposition", "attachment;filename=test.pdf");
         ServletOutputStream out = resp.getOutputStream();
-        String path = ServletActionContext.getServletContext().getRealPath("/");
+        String path = getServletContext().getRealPath("/");
         InputStream is = new FileInputStream(new File(path + "test.pdf"));
         int len = 0;
         byte[] buffer = new byte[1024];
@@ -58,7 +58,8 @@ public class ExportPaperAction extends BasePaperAction {
 
             // 2.建立一个书写器(Writer)与document对象关联，通过书写器(Writer)可以将文档写入到磁盘中。
             // 创建 PdfWriter 对象 第一个参数是对文档对象的引用，第二个参数是文件的实际名称，在该名称中还会给出其输出路径。
-            File file = new File("./webapp/test.pdf");
+            String path = getServletContext().getRealPath("/");
+            File file = new File(path + "test.pdf");
             if(file.exists()){//删除以往的PDF文件
                 file.delete();
             }
