@@ -58,7 +58,7 @@ public class ExportPaperAction extends BasePaperAction {
 
             // 2.建立一个书写器(Writer)与document对象关联，通过书写器(Writer)可以将文档写入到磁盘中。
             // 创建 PdfWriter 对象 第一个参数是对文档对象的引用，第二个参数是文件的实际名称，在该名称中还会给出其输出路径。
-            File file = new File("./pdf/test.pdf");
+            File file = new File("./webapp/test.pdf");
             if(file.exists()){//删除以往的PDF文件
                 file.delete();
             }
