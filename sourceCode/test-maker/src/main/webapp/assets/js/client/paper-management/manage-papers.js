@@ -4,7 +4,7 @@
      * Definition of DOM variables
      */
     var dataTable = $('#paper-mgmt-table');
-    var questionForm = $('#edit-paper-form');
+    var paperForm = $('#edit-paper-form');
 
     var toggleFormBtn = $('#show-edit-paper-form-btn');
     var newPaperModal = $('#new-paper-modal');
@@ -17,6 +17,13 @@
     var paperName = $('#paper-name');
 
     var questionList;
+
+    /*
+     * action urls
+     */
+    var listProjectUserURL=CONTEXT.ctx + '/web/project/current/list-users.action';
+    var paperPagingUrl=CONTEXT.ctx + '/web/project/current/paging.action';
+    var savePaperURL= CONTEXT.ctx + '/web/project/current/save-paper.action';
 
     dataTable.on('click','.edit-item', function (e) {
 
@@ -74,7 +81,43 @@
     $('#export-paper-btn').click(function (e) {
         exportPaper();
     });
+    toggleFormBtn.click(function (e) {
+        newPaperModal.modal('toggle');
+    });
+    submitPaperBtn.click(function (e) {
+        paperForm.submit();
+    });
+    /**
+     * Submit paper form
+     */
+    paperForm.submit(function (e) {
+        e.preventDefault();
+        if (!validatePaperForm()) {
+            return false;
+        }
+        savePaper();
+    });
+    //check form is valid or not
+    function validatePaperForm() {
+        if (!paperForm.valid()) {
+            return false;
+        }
+        if(paperName.val() === ''){
+            Dialogs.warning('请输入试卷名！');
+            return false;
+        }
+        if (questionSelectList.val() === ''){
+            Dialogs.warning('请选择试题！');
+            return false;
+        }
+        return true;
+    }
 
+    /**
+     * The core function to submit paper to the server.
+     */
+    function savePaper() {
+    }
     /**
      * action for export paper
      * @param paperId
@@ -102,17 +145,17 @@
                             $("body").append(a);
                             a.click();
                             $(a).remove();
-                        }
+                        };
                     }
                 };
                 // 发送ajax请求
-                xhr.send()
+                xhr.send();
             }
         });
     }
 
     function loadQuestions() {
-        var url = CONTEXT.ctx + '/web/quetions/list.action';
+        var url = CONTEXT.ctx + '/web/quetions/question-list.action';
         console.log('Finding quetions from: %s', url);
         return AjaxUtils.loadData(url)
             .done(function (data, textStatus, jqXHR) {

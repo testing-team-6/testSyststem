@@ -82,7 +82,7 @@ $(function () {
 
     function isValidAction(value) {
         if(value===undefined|| _.trim(value) === '') return false;
-        return value.match(/^.+\.action$/i)
+        return value.match(/^.+\.action$/i);
     }
 });
 
