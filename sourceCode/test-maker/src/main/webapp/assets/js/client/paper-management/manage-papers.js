@@ -16,7 +16,7 @@
     var submitPaperBtn = $('#save-paper-btn');
     var paperName = $('#paper-name');
 
-    var papers,paperList,questionList;
+    var papers,questions,questionList;
     var selectedPaper = {};
     /*
      * action urls
@@ -25,22 +25,55 @@
     var paperPagingUrl=CONTEXT.ctx + '/web/project/current/paging.action';
     var savePaperURL= CONTEXT.ctx + '/web/project/current/save-paper.action';
     var listPapersURL = CONTEXT.ctx + '/web/project/current/list-papers.action';
+    var listQuestionsURL = CONTEXT.ctx + '/web/project/current/list-questions.action';
+    var questionPagingUrl=CONTEXT.ctx + '/web/project/current/paging.action';
 
     var pagingHelper = new PaginationHelper(paperPagingUrl, listPapersURL, function (data) {
         papers = data.papers;
         console.log('%s papers loaded.', papers.length);
         displayPapers(papers);
-        loadTransitionsForInitialStatus();
     });
+    var pagingHelper2question = new PaginationHelper(questionPagingUrl, listQuestionsURL, function (data) {
+        questions=data.questions;
+        fillQuestionSelectList(questions);
+    });
+    /*
+    *    Default function when the page loads
+    * */
+    initialize();
+    /**
+     * Page initialization
+     */
+    function initialize() {
+        pagingHelper.loadPagingInfo();
+        pagingHelper2question.loadPagingInfo();
+        loadData();
+        new TableFilter(dataTable, searchBox);
+        initNewPaperModal();
+    }
+    /**
+     * what to happen when user clicks the 'edit' button
+     */
     dataTable.on('click','.edit-item', function (e) {
-
+        e.preventDefault();
+        var index = $(this).closest('tr').data('index');
+        selectedPaper = papers[index];
+        newPaperModal.modal('show');
+        loadData();
+        fillQuestionSelectList(questions);
+        loadQuetions(this.paperId);
+        bindSelectedToForm();
     });
-
     /**
      * Popup a modal of paper details
      */
     dataTable.on('click','.view-item', function (e) {
+        e.preventDefault();
 
+        //gets the data-index attribute in the table
+        var index = $(this).closest('tr').data('index');
+        selectedPaper = papers[index];
+        PaperUtils.showPaperDetailsModal({paper: selectedPaper});
     });
 
 
@@ -48,7 +81,14 @@
      * clicking the remove sign will delete the selected item
      */
     dataTable.on('click', '.delete-item', function (e) {
+        e.preventDefault();
 
+        //gets the data-index attribute in the table
+        var index = $(this).closest('tr').data('index');
+        console.log('Select row #%s for editing', index);
+        selectedPaper= papers[index];
+
+        deletePaper();
     });
     function displayPapers(papers) {
         AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/questions/paper-list-table.hbs.html', function (template) {
@@ -94,21 +134,6 @@
         paperForm.submit();
     });
 
-    paperForm.submit(function (e) {
-        e.preventDefault();
-        if (!validatePaperForm()) {
-            return false;
-        }
-        savePaper();
-    });
-
-    initialize();
-    function initialize() {
-        pagingHelper.loadPagingInfo();
-        loadData();
-        new TableFilter(dataTable, searchBox);
-        initNewPaperModal();
-    }
     function initNewPaperModal() {
         loadQuetions(null);
         loadProjectUsers();
@@ -161,6 +186,28 @@
             }
             wrapUp();
             loadData();
+        });
+    }
+    function deletePaper() {
+
+        var source = $('#delete-msg-template').html();
+        var template = Handlebars.compile(source);
+        var msg = template(selectedPaper);
+        Dialogs.confirm(msg, function (result) {
+            if (result) {
+                //user selected OK
+                dataTable.find('[data-id="'+selectedPaper.id+'"]').hide();
+                /*                var data = {
+                                    knowledgePoint: kp
+                                };
+                                var url=CONTEXT.ctx+'/knowledge-point/delete.action';
+                                AjaxUtils.postData(url, data)
+                                    .done(function (data,textStatus,jqXHR) {
+                                        listData(null);
+                                    });*/
+            }else {
+                //cancel the operation
+            }
         });
     }
     /**
@@ -216,9 +263,6 @@
         return AjaxUtils.loadData(url,{paperId:paperId})
             .done(function (data, textStatus, jqXHR) {
                 questionList = data.aaData;
-                if(paperId === null){
-                    fillQuestionSelectList(data);
-                }
             });
     }
     function fillQuestionSelectList(data) {

@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form id="edit-paper-form" class="form-horizontal title-border-form col-md-5">
+                    <form id="edit-paper-form" class="form-horizontal title-border-form col-md-9">
                         <div id="p-id-section" class="form-group hidden">
                             <label class="col-md-2 control-label">ID</label>
                             <div class="col-md-3">
@@ -20,14 +20,14 @@
                         <fieldset>
                             <legend>${PROJECT.syllabus.level} (${PROJECT.syllabus.version})</legend>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">选题</label>
-                                <div class="col-md-2">
+                                <label class="col-md-6 control-label">选题</label>
+                                <div class="col-md-4">
                                     <select id="question-select-list" class="form-control select-list" data-placeholder="选择题目" multiple="multiple">
                                         <option></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">组卷名</label>
+                                    <label class="col-md-4 control-label">组卷名</label>
                                         <input id="paper-name" class="form-control input-group-md">
                                 </div>
                             </div>
