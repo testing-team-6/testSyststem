@@ -89,7 +89,6 @@ cn\cstqb\exam\testmaker\entities\KnowledgePoint.class
 cn\cstqb\exam\testmaker\actions\chapter\DeleteChapterAction.class
 cn\cstqb\exam\testmaker\actions\questionChoice\DeleteQuestionChoiceAction.class
 cn\cstqb\exam\testmaker\dao\impl\QuestionStatusDaoImpl.class
-cn\cstqb\exam\testmaker\entities\Combine.class
 cn\cstqb\exam\testmaker\services\impl\PaperServiceImpl.class
 cn\cstqb\exam\testmaker\actions\questionLanguage\DeleteQuestionLanguageAction.class
 cn\cstqb\exam\testmaker\exceptions\EntityAlreadyExistsException.class
@@ -182,7 +181,6 @@ cn\cstqb\exam\testmaker\services\impl\DebugInitializationServiceImpl.class
 cn\cstqb\exam\testmaker\configuration\ApplicationConfigContext.class
 cn\cstqb\exam\testmaker\listeners\ApplicationInitListener.class
 cn\cstqb\exam\testmaker\util\ListSort$1.class
-cn\cstqb\exam\testmaker\util\PDFUtils.class
 cn\cstqb\exam\testmaker\actions\reporting\QuestionSummaryAction.class
 cn\cstqb\exam\testmaker\modules\impl\KnowledgePointModuleWorker.class
 cn\cstqb\exam\testmaker\util\HashUtil.class
@@ -195,9 +193,11 @@ cn\cstqb\exam\testmaker\actions\questionType\UpdateQuestionTypeAction.class
 cn\cstqb\exam\testmaker\services\impl\ExportServiceImpl$1.class
 cn\cstqb\exam\testmaker\tasks\ExpiringQuestionTrackingTask.class
 cn\cstqb\exam\testmaker\dao\impl\QuestionImageDaoImpl.class
+cn\cstqb\exam\testmaker\actions\projects\current\ListPapers.class
 cn\cstqb\exam\testmaker\actions\questionstatus\DeleteTransitionalStatusAction.class
 cn\cstqb\exam\testmaker\entities\AbstractEntity.class
 cn\cstqb\exam\testmaker\util\ListCompare.class
+cn\cstqb\exam\testmaker\actions\paper\ViewPaperAction.class
 cn\cstqb\exam\testmaker\dao\impl\UserDaoImpl.class
 cn\cstqb\exam\testmaker\actions\projects\ListProjectStatusAction.class
 cn\cstqb\exam\testmaker\services\IReportingService.class
@@ -253,6 +253,7 @@ cn\cstqb\exam\testmaker\actions\questionLanguage\SaveOrUpdateQuestionLanguageAct
 cn\cstqb\exam\testmaker\actions\reviewcomments\SaveReviewCommentAction.class
 cn\cstqb\exam\testmaker\actions\question\ListQuestionsByRole$1.class
 cn\cstqb\exam\testmaker\util\EntityNameUtils.class
+cn\cstqb\exam\testmaker\actions\paper\CreatePaperAction.class
 cn\cstqb\exam\testmaker\actions\projects\ExportProjectAction$1.class
 cn\cstqb\exam\testmaker\guice\ServiceModule.class
 cn\cstqb\exam\testmaker\actions\auth\AdminLoginAction.class

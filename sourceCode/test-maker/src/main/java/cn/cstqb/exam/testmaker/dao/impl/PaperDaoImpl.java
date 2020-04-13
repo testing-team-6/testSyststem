@@ -36,4 +36,8 @@ public class PaperDaoImpl extends GenericJpaDaoImpl<Paper, Integer> implements P
                 .setParameter("project", project)
                 .getResultList();
     };
+
+
+
+
 }

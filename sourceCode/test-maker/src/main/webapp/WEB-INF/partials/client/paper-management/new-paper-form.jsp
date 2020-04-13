@@ -37,7 +37,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button id="save-question-btn" type="button" class="btn btn-primary">提交组卷</button>
+                <button id="save-paper-btn" type="button" class="btn btn-primary">提交组卷</button>
             </div>
         </div>
     </div>

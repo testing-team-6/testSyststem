@@ -1,12 +1,12 @@
 package cn.cstqb.exam.testmaker.actions.paper;
 
-
 import cn.cstqb.exam.testmaker.entities.Paper;
 import cn.cstqb.exam.testmaker.entities.Question;
 import cn.cstqb.exam.testmaker.entities.QuestionChoice;
 import cn.cstqb.exam.testmaker.services.IQuestionService;
 import cn.cstqb.exam.testmaker.services.impl.QuestionServiceImpl;
 import com.google.inject.Inject;
+import com.google.common.collect.Lists;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -24,17 +24,27 @@ import java.util.Set;
 import static org.apache.struts2.ServletActionContext.getServletContext;
 
 
-/**
- * Created with IntelliJ IDEA.
- * User: Lame-Lamb
- * Date: 2020/4/10
- * Time: 9:18
- */
-
 public class ExportPaperAction extends BasePaperAction {
+    private int paperId;
+
+    public int getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(int paperId) {
+        this.paperId = paperId;
+    }
+
+    @Override
+    public void validateInput() {
+        if (paperId < 1) {
+            addActionError(getText("error.paper.id.invalid", Lists.newArrayList(paperId)));
+        }
+    }
+
     @Override
     public String executeImpl() throws Exception {
-        generatePaperPdf(1);
+        generatePaperPdf(paperId);
 
         HttpServletResponse resp = ServletActionContext.getResponse();
         resp.setCharacterEncoding("utf-8");
@@ -83,8 +93,8 @@ public class ExportPaperAction extends BasePaperAction {
             // 4.添加内容
             Paper paper = paperService.find(paperId);
             document.add(new Phrase(paper.getName() + "\n",font)); //添加试卷名称
-            Set<Question> questionList = paper.getQuestions();
 
+            Set<Question> questionList = paper.getQuestions();
             int count = 1; //题号
             for (Question q:questionList
             ) {

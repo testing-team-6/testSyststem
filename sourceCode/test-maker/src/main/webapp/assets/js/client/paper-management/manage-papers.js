@@ -18,21 +18,25 @@
 
     var papers,questions,questionList;
     var selectedPaper = {};
+    var projectUsers;
     /*
      * action urls
      */
     var listPapersURL = CONTEXT.ctx + '/web/project/current/list-papers.action';
     var paperPagingUrl=CONTEXT.ctx + '/web/project/current/paging-paper.action';
+    var listQuestionsURL = CONTEXT.ctx + '/web/project/current/list-questions.action';
+    var questionPagingUrl=CONTEXT.ctx + '/web/project/current/paging.action';
+    var listProjectUserURL=CONTEXT.ctx + '/web/project/current/list-users.action';
 
     var pagingHelper = new PaginationHelper(paperPagingUrl, listPapersURL, function (data) {
         papers = data.papers;
         console.log('%s papers loaded.', papers.length);
         displayPapers(papers);
     });
-    // var pagingHelper2question = new PaginationHelper(questionPagingUrl, listQuestionsURL, function (data) {
-    //     questions=data.questions;
-    //     fillQuestionSelectList(questions);
-    // });
+     var pagingHelper2question = new PaginationHelper(questionPagingUrl, listQuestionsURL, function (data) {
+          questions=data.questions;
+          fillQuestionSelectList(questions);
+      });
     /*
     *    Default function when the page loads
     * */
@@ -42,10 +46,10 @@
      */
     function initialize() {
         pagingHelper.loadPagingInfo();
-        // pagingHelper2question.loadPagingInfo();
+        pagingHelper2question.loadPagingInfo();
         loadData();
         new TableFilter(dataTable, searchBox);
-        // initNewPaperModal();
+        initNewPaperModal();
     }
     /**
      * what to happen when user clicks the 'edit' button
@@ -56,9 +60,9 @@
         selectedPaper = papers[index];
         newPaperModal.modal('show');
         loadData();
-        // fillQuestionSelectList(questions);
-        // loadQuetions(this.paperId);
-        // bindSelectedToForm();
+        fillQuestionSelectList(questions);
+        loadQuetions(this.paperId);
+        bindSelectedToForm();
     });
     /**
      * Popup a modal of paper details
@@ -86,6 +90,14 @@
 
         deletePaper();
     });
+
+    dataTable.on('click', '.print-item', function (e) {
+        e.preventDefault();
+        var index = $(this).closest('tr').data('index');
+        console.log('Select row #%s for print', index);
+        exportPaper(papers[index].id);
+    });
+
     function displayPapers(papers) {
         AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/papers/paper-list-table.hbs.html', function (template) {
             var templateData = {
@@ -112,17 +124,15 @@
     }
 
 
-    // function loadProjectUsers() {
-    //     return $.get(listProjectUserURL, {projectName: CONTEXT.projectName})
-    //         .done(function (data, textStatus, jqXHR) {
-    //             projectUsers=data.users;
-    //             console.log('%s project users found for %s', projectUsers.length, CONTEXT.projectName);
-    //         });
-    // }
+      function loadProjectUsers() {
+          return $.get(listProjectUserURL, {projectName: CONTEXT.projectName})
+              .done(function (data, textStatus, jqXHR) {
+                  projectUsers=data.users;
+                  console.log('%s project users found for %s', projectUsers.length, CONTEXT.projectName);
+              });
+      }
 
-    $('#export-paper-btn').click(function (e) {
-        exportPaper();
-    });
+
 
     toggleFormBtn.click(function (e) {
         newPaperModal.modal('toggle');
@@ -132,12 +142,12 @@
         paperForm.submit();
     });
 
-    // function initNewPaperModal() {
-    //     loadQuetions(null);
-    //     loadProjectUsers();
-    //     $('.select-list').select2({width: '100%'});
-    //     $('.select-list-simple').select2({width: '100%', minimumResultsForSearch: -1});
-    // }
+     function initNewPaperModal() {
+         loadQuetions(null);
+         loadProjectUsers();
+         $('.select-list').select2({width: '100%'});
+         $('.select-list-simple').select2({width: '100%', minimumResultsForSearch: -1});
+     }
     function bindSelectedToForm() {
         console.log('The selected paper is as below');
         console.dir(selectedPaper);
@@ -223,10 +233,10 @@
      * action for export paper
      * @param paperId
      */
-    function exportPaper() {
+    function exportPaper(paperId) {
         Dialogs.confirm('确定要导出组卷吗？操作可能会花费较长时间。', function (result) {
             if (result) {
-                var url = CONTEXT.ctx + '/web/admin/export-paper.action';
+                var url = CONTEXT.ctx + '/web/admin/export-paper.action?paperId=' + paperId;
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', url, true);
                 xhr.responseType = "blob";    // 返回类型blob
@@ -241,7 +251,7 @@
                         reader.onload = function (e) {
                             // 创建一个a标签用于下载
                             var a = document.createElement('a');
-                            a.download = 'paper.pdf';
+                            a.download = 'paper'+paperId+'.pdf';
                             a.href = e.target.result;
                             $("body").append(a);
                             a.click();
@@ -256,7 +266,7 @@
     }
 
     function loadQuetions(paperId) {
-        var url = CONTEXT.ctx + '/web/papers/question/list.action';
+        var url = CONTEXT.ctx + '/web/project/current/list-questions.action';
         console.log('Finding quetions from: %s', url);
         return AjaxUtils.loadData(url,{paperId:paperId})
             .done(function (data, textStatus, jqXHR) {
