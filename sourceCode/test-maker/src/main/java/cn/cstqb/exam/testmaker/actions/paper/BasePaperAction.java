@@ -15,7 +15,6 @@ import javax.inject.Inject;
 public abstract class BasePaperAction extends BaseAction {
     protected Paper paper;
     @Inject protected IPaperService paperService;
-    @Inject protected Paper paper;
     public BasePaperAction() {
         super();
         injector.injectMembers(this);

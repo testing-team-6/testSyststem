@@ -20,6 +20,8 @@
         <action name="list-users" class="cn.cstqb.exam.testmaker.actions.projects.current.ListProjectUserAction" />
         <action name="save-users" class="cn.cstqb.exam.testmaker.actions.projects.current.UpdateProjectUserAction" />
         <action name="update" class="cn.cstqb.exam.testmaker.actions.projects.current.UpdateProjectAction" />
+        <action name="list-papers" class="cn.cstqb.exam.testmaker.actions.projects.current.ListPapers" />
+        <action name="paging-paper" class="cn.cstqb.exam.testmaker.actions.projects.current.ListPapers" method="paging" />
     </package>
 
     <package name="project-status-actions" namespace="/web/project/status" extends="default-auth">

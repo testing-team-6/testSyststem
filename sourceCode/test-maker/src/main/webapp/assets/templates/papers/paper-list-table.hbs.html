@@ -2,40 +2,17 @@
 <tr>
     <th>ID</th>
     <th>名称</th>
-    <th>作者</th>
-    <th>创建时间</th>
-    <th>修改时间</th>
-    <th>项目编号</th>
+    <th>发布时间</th>
     {{#if showActions}}
-    <th class="action-col-2"></th>
+    <th class="action-col-4"></th>
     {{/if}}
 </tr>
 </thead>
 <tbody>
-{{#each questions}}
+{{#each papers}}
 <tr data-index="{{@index}}" data-id="{{id}}">
     <td>{{id}}</td>
-    <td>
-        {{#with knowledgePoint}}
-        <span>{{number}}&nbsp;{{title}}</span>
-        {{/with}}
-    </td>
-    <td>
-        {{#if status.start}}
-        <span class="label-lg label-default">{{status.name}}</span>
-        {{else if status.finish}}
-        <span class="label-lg label-info">{{status.name}}</span>
-        {{else}}
-        <span class="">{{status.name}}</span>
-        {{/if}}
-    </td>
-    <td>{{author.fullName}}</td>
-    <td>
-        {{#each reviewers}}
-        <span>{{fullName}}</span>
-        {{/each}}
-    </td>
-    <td>{{qualityAdmin.fullName}}</td>
+    <td>{{name}}</td>
     <td>{{date updatedOn}}</td>
     {{#if ../showActions}}
     <td>
@@ -45,6 +22,9 @@
         {{/if}}
         {{#if ../../showDetails}}
         <a href="#" class="view-item"><i class="glyphicon glyphicon-file"></i></a>
+        {{/if}}
+        {{#if ../../showPrint}}
+        <a href="{{id}}" class="print-item"><i class="glyphicon glyphicon-print"></i></a>
         {{/if}}
     </td>
     {{/if}}

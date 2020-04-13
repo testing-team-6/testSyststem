@@ -12,7 +12,7 @@ public class CreatePaperAction extends BasePaperAction{
                 return Constants.RESULT_NOT_FOUND;
             }
         }
-        paperService.saveOrUpate(paper);
+        paperService.saveOrUpdate(paper);
         return null;
     }
 }

@@ -21,22 +21,18 @@
     /*
      * action urls
      */
-    var listProjectUserURL=CONTEXT.ctx + '/web/project/current/list-users.action';
-    var paperPagingUrl=CONTEXT.ctx + '/web/project/current/paging.action';
-    var savePaperURL= CONTEXT.ctx + '/web/project/current/save-paper.action';
     var listPapersURL = CONTEXT.ctx + '/web/project/current/list-papers.action';
-    var listQuestionsURL = CONTEXT.ctx + '/web/project/current/list-questions.action';
-    var questionPagingUrl=CONTEXT.ctx + '/web/project/current/paging.action';
+    var paperPagingUrl=CONTEXT.ctx + '/web/project/current/paging-paper.action';
 
     var pagingHelper = new PaginationHelper(paperPagingUrl, listPapersURL, function (data) {
         papers = data.papers;
         console.log('%s papers loaded.', papers.length);
         displayPapers(papers);
     });
-    var pagingHelper2question = new PaginationHelper(questionPagingUrl, listQuestionsURL, function (data) {
-        questions=data.questions;
-        fillQuestionSelectList(questions);
-    });
+    // var pagingHelper2question = new PaginationHelper(questionPagingUrl, listQuestionsURL, function (data) {
+    //     questions=data.questions;
+    //     fillQuestionSelectList(questions);
+    // });
     /*
     *    Default function when the page loads
     * */
@@ -46,10 +42,10 @@
      */
     function initialize() {
         pagingHelper.loadPagingInfo();
-        pagingHelper2question.loadPagingInfo();
+        // pagingHelper2question.loadPagingInfo();
         loadData();
         new TableFilter(dataTable, searchBox);
-        initNewPaperModal();
+        // initNewPaperModal();
     }
     /**
      * what to happen when user clicks the 'edit' button
@@ -60,9 +56,9 @@
         selectedPaper = papers[index];
         newPaperModal.modal('show');
         loadData();
-        fillQuestionSelectList(questions);
-        loadQuetions(this.paperId);
-        bindSelectedToForm();
+        // fillQuestionSelectList(questions);
+        // loadQuetions(this.paperId);
+        // bindSelectedToForm();
     });
     /**
      * Popup a modal of paper details
@@ -91,12 +87,13 @@
         deletePaper();
     });
     function displayPapers(papers) {
-        AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/questions/paper-list-table.hbs.html', function (template) {
+        AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/papers/paper-list-table.hbs.html', function (template) {
             var templateData = {
                 papers: papers,
                 showActions: true,
                 showDelete: true,
-                showDetails: true
+                showDetails: true,
+                showPrint: true
             };
             dataTable.empty();
             dataTable.append(template(templateData));
@@ -114,13 +111,14 @@
             });
     }
 
-    function loadProjectUsers() {
-        return $.get(listProjectUserURL, {projectName: CONTEXT.projectName})
-            .done(function (data, textStatus, jqXHR) {
-                projectUsers=data.users;
-                console.log('%s project users found for %s', projectUsers.length, CONTEXT.projectName);
-            });
-    }
+
+    // function loadProjectUsers() {
+    //     return $.get(listProjectUserURL, {projectName: CONTEXT.projectName})
+    //         .done(function (data, textStatus, jqXHR) {
+    //             projectUsers=data.users;
+    //             console.log('%s project users found for %s', projectUsers.length, CONTEXT.projectName);
+    //         });
+    // }
 
     $('#export-paper-btn').click(function (e) {
         exportPaper();
@@ -134,12 +132,12 @@
         paperForm.submit();
     });
 
-    function initNewPaperModal() {
-        loadQuetions(null);
-        loadProjectUsers();
-        $('.select-list').select2({width: '100%'});
-        $('.select-list-simple').select2({width: '100%', minimumResultsForSearch: -1});
-    }
+    // function initNewPaperModal() {
+    //     loadQuetions(null);
+    //     loadProjectUsers();
+    //     $('.select-list').select2({width: '100%'});
+    //     $('.select-list-simple').select2({width: '100%', minimumResultsForSearch: -1});
+    // }
     function bindSelectedToForm() {
         console.log('The selected paper is as below');
         console.dir(selectedPaper);
