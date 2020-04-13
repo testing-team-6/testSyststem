@@ -4,6 +4,9 @@ package cn.cstqb.exam.testmaker.actions.paper;
 import cn.cstqb.exam.testmaker.entities.Paper;
 import cn.cstqb.exam.testmaker.entities.Question;
 import cn.cstqb.exam.testmaker.entities.QuestionChoice;
+import cn.cstqb.exam.testmaker.services.IQuestionService;
+import cn.cstqb.exam.testmaker.services.impl.QuestionServiceImpl;
+import com.google.inject.Inject;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -50,7 +53,7 @@ public class ExportPaperAction extends BasePaperAction {
         return SUCCESS;
     }
 
-    private void generatePaperPdf(Integer paperId) {
+    private void generatePaperPdf(int paperId) {
         try {
 
             // 1.新建document对象
@@ -80,8 +83,8 @@ public class ExportPaperAction extends BasePaperAction {
             // 4.添加内容
             Paper paper = paperService.find(paperId);
             document.add(new Phrase(paper.getName() + "\n",font)); //添加试卷名称
+            Set<Question> questionList = paper.getQuestions();
 
-            List<Question> questionList = paper.getQuestions();
             int count = 1; //题号
             for (Question q:questionList
             ) {

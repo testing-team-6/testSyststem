@@ -58,7 +58,7 @@ public class PaperServiceImpl implements IPaperService {
 
         Paper persisted = paperDao.findById(paper.getId());
         if (persisted == null) {
-            checkState(paper.validateBasicFields(), "Missing required fields in question: %s", paper);
+            checkState(paper.validate(), "Missing required fields in question: %s", paper);
             paperDao.create(paper);
         } else {
             checkState(paper.validate(), "Missing required fields in question: %s", paper);

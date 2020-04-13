@@ -3,6 +3,7 @@ package cn.cstqb.exam.testmaker.actions.paper;
 import cn.cstqb.exam.testmaker.actions.BaseAction;
 import cn.cstqb.exam.testmaker.entities.Paper;
 import cn.cstqb.exam.testmaker.services.IPaperService;
+import cn.cstqb.exam.testmaker.services.IQuestionService;
 
 import javax.inject.Inject;
 
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 public abstract class BasePaperAction extends BaseAction {
     protected Paper paper;
     @Inject protected IPaperService paperService;
+    @Inject protected IQuestionService questionService;
     public BasePaperAction() {
         super();
         injector.injectMembers(this);

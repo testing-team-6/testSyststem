@@ -7,11 +7,13 @@ import com.google.common.base.Objects;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 //该类参照Project和Question建成
 //因为继承了AbstractBaseEntity类和AbstractEntity类故不需id和created属性
 @Entity
+@Table(name = "paper")
 public class Paper extends AbstractBaseEntity {
 
     @ManyToOne
@@ -24,9 +26,16 @@ public class Paper extends AbstractBaseEntity {
     private String name;
 
     @OneToMany
-    @JsonIgnore
-    private List<Question> questions;
-    //放试卷的题目
+    @JoinTable(
+            name = "combine",
+            joinColumns = {
+                    @JoinColumn(name = "paper_id"),
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "question_id")
+            }
+    )
+    private Set<Question> questions;
 
     public Paper(Project project,String name){
         this.project = project;
@@ -53,21 +62,16 @@ public class Paper extends AbstractBaseEntity {
         this.name = name;
     }
 
-    public List<Question> getQuestions() {
+    public Set<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(Set<Question> questions) {
         this.questions = questions;
     }
 
     public void addQuestion(Question question) {
-        if (questions == null) {
-            questions = new ArrayList<>();
-        }
-        if (!questions.contains(question)) {
-            questions.add(question);
-        }
+        questions.add(question);
     }
 
     public void deleteQuestion(Question question){
@@ -118,8 +122,5 @@ public class Paper extends AbstractBaseEntity {
         return project != null
                 && name != null
                 ;
-    }
-    public boolean validateBasicFields(){
-        return  name != null;
     }
 }
