@@ -132,7 +132,7 @@
               });
       }
 
-
+    newPaperModal.on('hidden.bs.modal',wrapUp);
 
     toggleFormBtn.click(function (e) {
         newPaperModal.modal('toggle');
