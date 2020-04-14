@@ -93,8 +93,8 @@ public class ExportPaperAction extends BasePaperAction {
             // 4.添加内容
             Paper paper = paperService.find(paperId);
             document.add(new Phrase(paper.getName() + "\n",font)); //添加试卷名称
-
             Set<Question> questionList = paper.getQuestions();
+
             int count = 1; //题号
             for (Question q:questionList
             ) {
@@ -102,8 +102,9 @@ public class ExportPaperAction extends BasePaperAction {
                 document.add(new Paragraph(q.getStem(),font));//题干
                 document.add(new Paragraph(q.getScenario(),font));//情景
 
-                Set<QuestionChoice> questionChoices = q.getChoices();//选项
-                if(questionChoices.size() > 0){
+                List<QuestionChoice> questionChoices = questionChoiceService.findQuestionChoices(q);//选项
+
+                if(questionChoices != null && questionChoices.size() > 0){
                     if(q.isMultipleChoice()){
                         document.add(new Paragraph("(多选题）",font));
                     }else {
