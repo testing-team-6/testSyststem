@@ -20,15 +20,6 @@
                         <a id="reload-paper-btn" href="#" class="btn btn-primary navbar-btn-tm" role="button"><i
                                 class="glyphicon glyphicon-refresh"></i>刷新</a>
                     </li>
-                    <li>
-                        <form class="navbar-form" role="search" onsubmit="return false;">
-                            <div class="form-group">
-                                <input id="paper-keyword" type="text" class="form-control" placeholder="试卷关键字">
-                                <a id="search-syllabus-btn" class="btn btn-danger navbar-btn-tm"><i
-                                        class="glyphicon glyphicon-search"></i></a>
-                            </div>
-                        </form>
-                    </li>
                 </ul>
             </div>
         </nav>

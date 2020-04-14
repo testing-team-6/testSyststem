@@ -1,0 +1,8 @@
+<option></option>
+{{#each aaData}}
+<option value="{{id}}" data-index="{{@index}}">
+    {{id}}
+    {{#with knowledgePoint}}
+    {{number}}&nbsp;{{title}}
+</option>
+{{/each}}

@@ -33,10 +33,6 @@
         console.log('%s papers loaded.', papers.length);
         displayPapers(papers);
     });
-     var pagingHelper2question = new PaginationHelper(questionPagingUrl, listQuestionsURL, function (data) {
-          questions=data.questions;
-          fillQuestionSelectList(questions);
-      });
     /*
     *    Default function when the page loads
     * */
@@ -46,7 +42,6 @@
      */
     function initialize() {
         pagingHelper.loadPagingInfo();
-        pagingHelper2question.loadPagingInfo();
         loadData();
         new TableFilter(dataTable, searchBox);
         initNewPaperModal();
@@ -61,7 +56,7 @@
         newPaperModal.modal('show');
         loadData();
         fillQuestionSelectList(questions);
-        loadQuetions(this.paperId);
+        loadQuestions();
         bindSelectedToForm();
     });
     /**
@@ -143,7 +138,7 @@
     });
 
      function initNewPaperModal() {
-         loadQuetions(null);
+         loadQuestions();
          loadProjectUsers();
          $('.select-list').select2({width: '100%'});
          $('.select-list-simple').select2({width: '100%', minimumResultsForSearch: -1});
@@ -151,7 +146,7 @@
     function bindSelectedToForm() {
         console.log('The selected paper is as below');
         console.dir(selectedPaper);
-        loadQuetions(selectedPaper.id);
+        loadQuestions();
         idSection.find('input').val(selectedPaper.id);
     }
     /**
@@ -265,21 +260,22 @@
         });
     }
 
-    function loadQuetions(paperId) {
-        var url = CONTEXT.ctx + '/web/project/current/list-questions.action';
-        console.log('Finding quetions from: %s', url);
-        return AjaxUtils.loadData(url,{paperId:paperId})
+    function loadQuestions() {
+        return $.get(listQuestionsURL, {
+            pageSize: pagingHelper.pageSize,
+            pageNumber: pagingHelper.currentPage
+        })
             .done(function (data, textStatus, jqXHR) {
-                questionList = data.aaData;
-            });
+                questions=data.questions;
+                fillQuestionSelectList(questions);
+            })
+
     }
+
     function fillQuestionSelectList(data) {
-        var source = $('#question-select-list-template').html();
-        var template = Handlebars.compile(source);
-        questionSelectList.empty();
-        questionSelectList.append('<option></option>');
-        questionSelectList.select2('val','');
-        questionSelectList.append(template(data));
+        AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/syllabus/question-list-options.hbs.html', function (template) {
+            questionSelectList.html(template(data));
+        });
     }
     function wrapUp() {
         selectedPaper = {};

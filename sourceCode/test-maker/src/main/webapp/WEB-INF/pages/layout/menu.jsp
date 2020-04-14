@@ -10,6 +10,7 @@
         <li role="presentation"><a href="project.action" class="nav-menu-item">项目管理</a></li>
         <li role="presentation"><a href="item-management.action" class="nav-menu-item">题目管理</a></li>
         <li role="presentation"><a href="paper-management.action" class="nav-menu-item">组卷管理</a></li>
+        <li role="presentation"><a href="paper-generation.action" class="nav-menu-item">新建组卷</a></li>
     </ul>
 </s:if>
 <ul class="nav nav-pills nav-stacked">

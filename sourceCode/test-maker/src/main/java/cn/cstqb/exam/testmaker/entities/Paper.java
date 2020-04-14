@@ -6,6 +6,7 @@ import com.google.common.base.Objects;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -43,7 +44,7 @@ public class Paper extends AbstractBaseEntity {
     }
 
     public Paper() {
-
+        questions = new HashSet<>();
     }
 
     public Project getProject() {
