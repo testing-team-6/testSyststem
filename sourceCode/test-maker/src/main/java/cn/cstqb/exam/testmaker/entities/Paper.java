@@ -38,10 +38,9 @@ public class Paper extends AbstractBaseEntity {
     )
     private Set<Question> questions;
 
-    public Paper(Project project,String name,Set<Question> questions){
+    public Paper(Project project,String name){
         this.project = project;
         this.name = name;
-        this.questions = questions;
     }
 
     public Paper() {
