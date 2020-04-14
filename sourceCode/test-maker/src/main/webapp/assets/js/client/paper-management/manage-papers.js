@@ -4,29 +4,18 @@
      * Definition of DOM variables
      */
     var dataTable = $('#paper-mgmt-table');
-    var paperForm = $('#edit-paper-form');
-
-    var toggleFormBtn = $('#show-edit-paper-form-btn');
-    var newPaperModal = $('#new-paper-modal');
     
     //form elements
-    var idSection = $('#p-id-section');
-    var questionSelectList=$('#question-select-list');
     var searchBox = $('#paper-keyword');
-    var submitPaperBtn = $('#save-paper-btn');
-    var paperName = $('#paper-name');
 
-    var papers,questions,questionList;
+    var papers;
     var selectedPaper = {};
-    var projectUsers;
     /*
      * action urls
      */
     var listPapersURL = CONTEXT.ctx + '/web/project/current/list-papers.action';
     var paperPagingUrl=CONTEXT.ctx + '/web/project/current/paging-paper.action';
-    var listQuestionsURL = CONTEXT.ctx + '/web/project/current/list-questions.action';
-    var questionPagingUrl=CONTEXT.ctx + '/web/project/current/paging.action';
-    var listProjectUserURL=CONTEXT.ctx + '/web/project/current/list-users.action';
+    var deletePaperURL = CONTEXT.ctx + '/web/project/current/delete-paper.action';
 
     var pagingHelper = new PaginationHelper(paperPagingUrl, listPapersURL, function (data) {
         papers = data.papers;
@@ -44,32 +33,8 @@
         pagingHelper.loadPagingInfo();
         loadData();
         new TableFilter(dataTable, searchBox);
-        initNewPaperModal();
     }
-    /**
-     * what to happen when user clicks the 'edit' button
-     */
-    dataTable.on('click','.edit-item', function (e) {
-        e.preventDefault();
-        var index = $(this).closest('tr').data('index');
-        selectedPaper = papers[index];
-        newPaperModal.modal('show');
-        loadData();
-        fillQuestionSelectList(questions);
-        loadQuestions();
-        bindSelectedToForm();
-    });
-    /**
-     * Popup a modal of paper details
-     */
-    dataTable.on('click','.view-item', function (e) {
-        e.preventDefault();
 
-        //gets the data-index attribute in the table
-        var index = $(this).closest('tr').data('index');
-        selectedPaper = papers[index];
-        PaperUtils.showPaperDetailsModal({paper: selectedPaper});
-    });
 
 
     /**
@@ -99,7 +64,7 @@
                 papers: papers,
                 showActions: true,
                 showDelete: true,
-                showDetails: true,
+                showDetails: false,
                 showPrint: true
             };
             dataTable.empty();
@@ -118,79 +83,6 @@
             });
     }
 
-
-      function loadProjectUsers() {
-          return $.get(listProjectUserURL, {projectName: CONTEXT.projectName})
-              .done(function (data, textStatus, jqXHR) {
-                  projectUsers=data.users;
-                  console.log('%s project users found for %s', projectUsers.length, CONTEXT.projectName);
-              });
-      }
-
-
-
-    toggleFormBtn.click(function (e) {
-        newPaperModal.modal('toggle');
-    });
-
-    submitPaperBtn.click(function (e) {
-        paperForm.submit();
-    });
-
-     function initNewPaperModal() {
-         loadQuestions();
-         loadProjectUsers();
-         $('.select-list').select2({width: '100%'});
-         $('.select-list-simple').select2({width: '100%', minimumResultsForSearch: -1});
-     }
-    function bindSelectedToForm() {
-        console.log('The selected paper is as below');
-        console.dir(selectedPaper);
-        loadQuestions();
-        idSection.find('input').val(selectedPaper.id);
-    }
-    /**
-     * Submit paper form
-     */
-    paperForm.submit(function (e) {
-        e.preventDefault();
-        if (!validatePaperForm()) {
-            return false;
-        }
-        savePaper();
-    });
-    //check form is valid or not
-    function validatePaperForm() {
-        if (!paperForm.valid()) {
-            return false;
-        }
-        if(paperName.val() === ''){
-            Dialogs.warning('请输入试卷名！');
-            return false;
-        }
-        if (questionSelectList.val() === ''){
-            Dialogs.warning('请选择试题！');
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * The core function to submit paper to the server.
-     */
-    function savePaper() {
-        bindToModel();
-        AjaxUtils.postData(savePaperURL, {paper: selectedPaper}, false).done(function () {
-            //if it's an update action, just update current page. otherwise go to the last page.
-            if(!_.isUndefined(selectedPaper.id)) {
-                pagingHelper.highlightCurrentPage();
-            }else{
-                pagingHelper.goToLastPage(!selectedPaper.id);
-            }
-            wrapUp();
-            loadData();
-        });
-    }
     function deletePaper() {
 
         var source = $('#delete-msg-template').html();
@@ -200,30 +92,16 @@
             if (result) {
                 //user selected OK
                 dataTable.find('[data-id="'+selectedPaper.id+'"]').hide();
-                /*                var data = {
-                                    knowledgePoint: kp
-                                };
-                                var url=CONTEXT.ctx+'/knowledge-point/delete.action';
-                                AjaxUtils.postData(url, data)
-                                    .done(function (data,textStatus,jqXHR) {
-                                        listData(null);
-                                    });*/
+                var ids = selectedPaper.id;  //拼接后的ids
+                AjaxUtils.postData(deletePaperURL, {id: ids}, false).done(function () {
+                    loadData();
+                });
             }else {
                 //cancel the operation
             }
         });
     }
-    /**
-     * Binds the form values to the paper model variable
-     */
-    function bindToModel() {
-        var pId = paperForm.find('#paper-id').val();
-        if(pId !== ''){
-            selectedPaper.id = pId;
-        }
-        selectedPaper.questions = questionSelectList.val();
-        selectedPaper.name = paperName.val();
-    }
+
     /**
      * action for export paper
      * @param paperId
@@ -260,27 +138,5 @@
         });
     }
 
-    function loadQuestions() {
-        return $.get(listQuestionsURL, {
-            pageSize: pagingHelper.pageSize,
-            pageNumber: pagingHelper.currentPage
-        })
-            .done(function (data, textStatus, jqXHR) {
-                questions=data.questions;
-                fillQuestionSelectList(questions);
-            })
 
-    }
-
-    function fillQuestionSelectList(data) {
-        AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/syllabus/question-list-options.hbs.html', function (template) {
-            questionSelectList.html(template(data));
-        });
-    }
-    function wrapUp() {
-        selectedPaper = {};
-        paperForm[0].reset();
-        newPaperModal.modal('hide');
-        questionSelectList.val().trigger('change');
-    }
 })();

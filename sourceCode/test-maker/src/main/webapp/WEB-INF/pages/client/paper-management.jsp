@@ -11,10 +11,6 @@
         <nav class="toolbar navbar navbar-default">
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a id="show-edit-paper-form-btn" class="btn btn-primary navbar-btn-tm" data-toggle="modal"
-                           role="button"><i class="glyphicon glyphicon-plus-sign"></i>新建组卷</a>
-                    </li>
 
                     <li>
                         <a id="reload-paper-btn" href="#" class="btn btn-primary navbar-btn-tm" role="button"><i
@@ -47,7 +43,31 @@
         {{/each}}
     </ul>
 </script>
-
+<script id="delete-msg-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <p class=" alert alert-danger" role="alert">
+                确定要删除以下试卷吗？
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <table class="table table-striped table-bordered">
+                <tbody>
+                <tr>
+                    <td><b>ID</b></td>
+                    <td>{{id}}</td>
+                </tr>
+                <tr>
+                    <td><b>名称</b></td>
+                    <td>{{name}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
 
 <script src="${ctx}/assets/js/client/paper-management/manage-papers.js"></script>
 

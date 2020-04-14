@@ -4,7 +4,7 @@ import cn.cstqb.exam.testmaker.configuration.Constants;
 import cn.cstqb.exam.testmaker.entities.Paper;
 import cn.cstqb.exam.testmaker.entities.Question;
 import com.google.common.collect.Lists;
-//import jdk.vm.ci.meta.Constant;
+import jdk.vm.ci.meta.Constant;
 
 import java.util.List;
 

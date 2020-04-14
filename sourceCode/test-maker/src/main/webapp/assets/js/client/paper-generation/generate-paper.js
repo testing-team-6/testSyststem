@@ -26,7 +26,6 @@
     var toggleFormBtn = $('#show-edit-question-form-btn');
     var newQuestionModal = $('#new-question-modal'); //there is one redundant usage
     var newPaperModal=$('#new-paper-modal'); //new PaperModal
-    var submitQuestionBtn = $('#save-question-btn');
     var submitPaperBtn = $('#submit-paper-btn');
     var searchBox = $('#question-keyword');
     var batchUpdateStatusBtn=$('#batch-update-initial-status-btn');
@@ -147,13 +146,6 @@
         }, false );
     });//useless
 
-    /* modified to newPaper */
-    authorSelectList.on('select2:select',function (e) {
-        console.log('selecting author');
-        var index = $(this).find(':selected').data('index');
-        // newPaper.author=projectUsers[index];
-        //$('b').html(index);
-    });
 
     /*newly added paper name */
     paperName.on('input propertychange',function(){
@@ -164,27 +156,13 @@
     });
 
 
-    reviewerSelectList.on('select2:select',function (e) {
-        console.log('selecting reviewer');
-        var index = $(this).find(':selected').data('index');
-        selectedQuestion.reviewers=[projectUsers[index]];
-    });
-
-    qaSelectList.on('select2:select',function (e) {
-        console.log('selecting QA');
-        var index = $(this).find(':selected').data('index');
-        selectedQuestion.qualityAdmin=projectUsers[index];
-    });
 
     /* modified by wsl from newQuestionModal -> newPaperModal done*/
     toggleFormBtn.click(function (e) {
-        //newQuestionModal.modal('toggle');
-        //ADD by jxy
         var check = $("table#question-mgmt-table input[type=checkbox]:checked");
         check.each(function () {
             var id =$(this).closest("tr").find("td:eq(1)").text();//获取选中行的question id
             selectedQuestionId.push(id);
-            alert(id);
         });
         if (selectedQuestionId.length===0) { //没有选中，提示弹窗
             warnSelectQuestionModal.modal("show");
@@ -222,22 +200,6 @@
     });
 
 
-    /**
-     * The core function to submit question to the server.
-     */
-    function saveQuestion() {
-        bindToModel();
-        AjaxUtils.postData(saveQuestionURL, {question: selectedQuestion}, false).done(function () {
-            //if it's an update action, just update current page. otherwise go to the last page.
-            if(!_.isUndefined(selectedQuestion.id)) {
-                pagingHelper.highlightCurrentPage();
-            }else{
-                pagingHelper.goToLastPage(!selectedQuestion.id);
-            }
-            wrapUp();
-            loadData();
-        });
-    }
 
     function savePaper() {
         //todo: get questions id and bind to newPaper.questions
@@ -251,28 +213,12 @@
             }else{
                 pagingHelper.goToLastPage(!selectedQuestion.id);
             }
-
-            selectedPaperQuestions = [];//clean array
-
+            newPaperModal.modal('hide');
             wrapUp();
             loadData();
         });
     }
 
-    /**
-     * Binds the form values to the question model variable
-     */
-    //should be changed to paper model variable
-    function bindToModel() {
-        var qId = questionForm.find('#question-id').val();
-        if (qId!=='') {
-            selectedQuestion.id=qId;
-        }
-        selectedQuestion.authoringStartDate = DatePickerUtil.getDate(authorStartDate);
-        selectedQuestion.authoringFinishDate = DatePickerUtil.getDate(authorFinishDate);
-        selectedQuestion.reviewingStartDate = DatePickerUtil.getDate(reviewStartDate);
-        selectedQuestion.reviewingFinishDate = DatePickerUtil.getDate(reviewFinishDate);
-    }
 
     function initNewQuestionModal() {
         loadChapters();
@@ -306,83 +252,7 @@
 
     }
 
-    function bindSelectedToForm() {
-        console.log('The selected question is as below');
-        console.dir(selectedQuestion);
 
-        //knowledge point & chapter information
-        var kp = selectedQuestion.knowledgePoint;
-        if (kp) {
-            var _chapters=_.filter(chapters, function (ch) {
-                return ch.id === kp.chapter.id;
-            });
-            chapterSelectList.val(kp.chapter.id).trigger('change');
-            loadKnowledgePoints(_chapters[0]).done(function () { //update the knowledge point value after ajax load
-                knowledgePointSelectList.val(kp.id).trigger('change');
-            });
-        }
-
-
-        idSection.removeClass('hidden');
-        idSection.find('input').val(selectedQuestion.id);
-        questionStatusField.text(selectedQuestion.status.name);
-        //author information
-        populateUserSelectList(authorSelectList).done(function () {
-            authorSelectList.val(selectedQuestion.author.id).trigger('change');
-        });
-        DatePickerUtil.setDate(authorStartDate, selectedQuestion.authoringStartDate);
-        DatePickerUtil.setDate(authorFinishDate, selectedQuestion.authoringFinishDate);
-
-        //reviewer information
-        populateUserSelectList(reviewerSelectList).done(function () {
-            var reviewer = selectedQuestion.reviewers[0];
-            if (reviewer) {
-                reviewerSelectList.select2('val',reviewer.id);
-            }
-        });
-
-        DatePickerUtil.setDate(reviewStartDate, selectedQuestion.reviewingStartDate);
-        DatePickerUtil.setDate(reviewFinishDate, selectedQuestion.reviewingFinishDate);
-
-        questionTypeSelectList.val(selectedQuestion.type.id).trigger('change');
-        questionLanguageSelectList.val(selectedQuestion.language.id).trigger('change');
-        populateUserSelectList(qaSelectList).done(function () {
-            qaSelectList.val(selectedQuestion.qualityAdmin.id).trigger('change');
-        });
-    }
-
-    function validateQuestionForm() {
-        if (!questionForm.valid()) {
-            return false;
-        }
-
-        if (authorSelectList.val() === '') {
-            Dialogs.warning('请选择作者！');
-            return false;
-        }
-        if (qaSelectList.val() === '') {
-            Dialogs.warning('请选择质管！');
-            return false;
-        }
-        if (reviewerSelectList.val() === '') {
-            Dialogs.warning('请选择评审！');
-            return false;
-        }
-
-        var formUsers=[];
-        formUsers.push(authorSelectList.val());
-        if(formUsers.indexOf(qaSelectList.val()) === -1) {
-            formUsers.push(qaSelectList.val());
-        }
-        if(formUsers.indexOf(reviewerSelectList.val()) === -1) {
-            formUsers.push(reviewerSelectList.val());
-        }
-        if (formUsers.length <3) {
-            Dialogs.error("作者、评审和终审不能为同一人，请确认！");
-            return false;
-        }
-        return true;
-    }
 
     function validatePaperForm() {
         if (!paperForm.valid()) {
@@ -393,30 +263,11 @@
             Dialogs.warning('请输入试卷名！');
             return false;
         }
-        if (paperDescription.val() === '') {
-            Dialogs.warning('请输入备注信息！');
-            return false;
-        }
 
         return true;
     }
 
-    /**
-     * what to happen when user clicks the 'edit' button
-     */
 
-    /*this part is unnecessary*/
-    dataTable.on('click','.edit-item', function (e) {
-        e.preventDefault();
-
-        //gets the data-index attribute in the table and set selected kp per this index
-        var index = $(this).closest('tr').data('index');
-        selectedQuestion = questions[index];
-        //populate the selected to save form
-        newQuestionModal.modal('show');
-        loadTransitions();
-        bindSelectedToForm();
-    });
 
     /**
      * Popup a modal of question details
@@ -430,39 +281,7 @@
         QuestionUtils.showQuestionDetailsModal({question: selectedQuestion});
     });
 
-    /**
-     * Submit all changes include status
-     */
-    $(document).on('click','#transition-dropdown .transition-item',function (e) {
-        e.preventDefault();
-        e.stopPropagation();
 
-        var transitionName = $(this).text();
-        var index = $(this).data('index');
-        var msg = '确定要将问题改为 <b>' + transitionName + '</b> 状态吗？ <p>新状态要在点击<b>提交题目</b>按钮之后才会生效！</p>';
-        Dialogs.confirm(msg, function (result) {
-            if (result) {
-                selectedQuestion.status = transitions[index];
-                questionStatusField.text(selectedQuestion.status.name);
-                /*
-                 * The change just applies to current select question object. Saving the question will take effect.
-                 */
-            }
-        });
-    });
-    /**
-     * clicking the remove sign will delete the selected item
-     */
-    dataTable.on('click', '.delete-item', function (e) {
-        e.preventDefault();
-
-        //gets the data-index attribute in the table and set selected kp per this index
-        var index = $(this).closest('tr').data('index');
-        console.log('Select row #%s for editing', index);
-        selectedQuestion = questions[index];
-
-        deleteQuestion();
-    });
 
     function displayQuestions(questions) {
         AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/questions/question-list-table-another.hbs.html', function (template) {
@@ -553,21 +372,6 @@
             });
 
     }
-    /**
-     * loads available statuses for selected question
-     */
-    function loadTransitions() {
-        if(!selectedQuestion.status.accessibleByFacilitator){
-            return false;
-        }
-        return QuestionUtils.loadTransitions(selectedQuestion, 'FACILITATOR',function (data) {
-            transitions = data.transitions;
-            AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/questions/transition-dropdown-menu.hbs.html', function (template) {
-                transitionContainer.empty();
-                transitionContainer.html(template({statuses: transitions, dropDownListId: 'transition-dropdown'}));
-            });
-        });
-    }
 
     function fillChapterSelectList(data) {
         AjaxUtils.getTemplateAjax(CONTEXT.ctx +'/assets/templates/syllabus/chapter-list-options.hbs.html', function (template) {
@@ -598,28 +402,7 @@
         knowledgePointSelectList.append(template(data));
     }
 
-    function deleteQuestion() {
 
-        var source = $('#delete-msg-template').html();
-        var template = Handlebars.compile(source);
-        var msg=template(selectedQuestion);
-        Dialogs.confirm(msg, function (result) {
-            if (result) {
-                //user selected OK
-                dataTable.find('[data-id="'+selectedQuestion.id+'"]').hide();
-                /*                var data = {
-                                    knowledgePoint: kp
-                                };
-                                var url=CONTEXT.ctx+'/knowledge-point/delete.action';
-                                AjaxUtils.postData(url, data)
-                                    .done(function (data,textStatus,jqXHR) {
-                                        listData(null);
-                                    });*/
-            }else {
-                //cancel the operation
-            }
-        });
-    }
 
     function wrapUp() {
         selectedQuestion = {};

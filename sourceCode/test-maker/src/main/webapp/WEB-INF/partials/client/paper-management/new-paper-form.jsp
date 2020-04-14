@@ -15,16 +15,6 @@
                         </fieldset>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">作者</label>
-                            <div class="col-md-2 col-lg-2">
-                                <select id="author-list" class="select-list user-select-list form-control" data-placeholder="选择作者" required>
-                                    <option></option>
-                                </select>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
                             <label class="col-md-2 control-label">试卷名称</label>
                             <div class="col-md-2">
                                 <input id='paperName' name="paperName" type='text'  required>
