@@ -9,8 +9,8 @@ import org.junit.ClassRule;
 import org.junit.Test;
 
 public class CreateQuestionActionTest{
-     private IQuestionService service;
-     private CreateQuestionAction action;
+     @Inject private IQuestionService service;
+     @Inject private CreateQuestionAction action;
     @ClassRule
     public static DefaultJpaRule rule = new DefaultJpaRule();
 
