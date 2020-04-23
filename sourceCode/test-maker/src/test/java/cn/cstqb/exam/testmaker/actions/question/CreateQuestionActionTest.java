@@ -1,7 +1,6 @@
 package cn.cstqb.exam.testmaker.actions.question;
 
 import cn.cstqb.exam.testmaker.entities.Question;
-import cn.cstqb.exam.testmaker.entities.QuestionChoice;
 import cn.cstqb.exam.testmaker.junit.rules.DefaultJpaRule;
 import cn.cstqb.exam.testmaker.services.IQuestionService;
 import org.junit.After;
@@ -9,7 +8,6 @@ import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
 public class CreateQuestionActionTest{
     @Inject private IQuestionService service;
     @Inject private CreateQuestionAction action;
