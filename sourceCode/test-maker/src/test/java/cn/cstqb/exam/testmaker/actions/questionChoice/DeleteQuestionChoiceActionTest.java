@@ -10,8 +10,8 @@ import org.junit.Test;
 import javax.inject.Inject;
 
 public class DeleteQuestionChoiceActionTest {
-    private IQuestionChoiceService service;
-    private DeleteQuestionChoiceAction action;
+    @Inject private IQuestionChoiceService service;
+    @Inject private DeleteQuestionChoiceAction action;
     @ClassRule
     public static DefaultJpaRule rule = new DefaultJpaRule();
 
