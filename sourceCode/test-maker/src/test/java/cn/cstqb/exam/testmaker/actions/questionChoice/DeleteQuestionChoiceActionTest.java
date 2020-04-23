@@ -31,6 +31,7 @@ public class DeleteQuestionChoiceActionTest {
         QuestionChoice choice = service.findQuestionChoice(1);
         choice.setId(1);
         action.setChoice(choice);
+        action.setId(1);
         action.execute();
     }
 }
