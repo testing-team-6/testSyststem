@@ -4,30 +4,23 @@ import cn.cstqb.exam.testmaker.dao.*;
 import cn.cstqb.exam.testmaker.entities.*;
 import cn.cstqb.exam.testmaker.junit.rules.DefaultJpaRule;
 import cn.cstqb.exam.testmaker.mailing.MailNotificationFactory;
-import cn.cstqb.exam.testmaker.services.IQuestionService;
 
 import com.google.common.collect.Sets;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnit4Mockery;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.ClassRule;
-import org.junit.Test;
+import org.junit.*;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServlet;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
-import java.util.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class CreateQuestionActionTest {
-    @Inject private IQuestionService service;
     private Mockery context = new JUnit4Mockery();
     @Inject private CreateQuestionAction action;
-    @Inject private QuestionDao dao;
     @Inject private ProjectDao projectDao;
     @Inject private UserDao userDao;
     @Inject private QuestionTypeDao questionTypeDao;
@@ -108,5 +101,6 @@ public class CreateQuestionActionTest {
         action.setQuestion(question);
         action.mailFactory = factory;
         action.executeImpl();
+        assertEquals(null, action.executeImpl());
     }
 }
