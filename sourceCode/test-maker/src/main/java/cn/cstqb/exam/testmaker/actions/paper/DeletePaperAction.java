@@ -1,20 +1,31 @@
 package cn.cstqb.exam.testmaker.actions.paper;
 
 import cn.cstqb.exam.testmaker.actions.BaseAction;
-import cn.cstqb.exam.testmaker.configuration.Constants;
 import cn.cstqb.exam.testmaker.entities.*;
 import cn.cstqb.exam.testmaker.services.IPaperService;
+import cn.cstqb.exam.testmaker.services.IProjectService;
+
 import javax.inject.Inject;
 
 public class DeletePaperAction extends BaseAction {
     //Ignore
     @Inject
     private IPaperService paperService;
+    @Inject
+    private IProjectService projectService;
     private String id;
-
+    private String projectName;
+    private Project project;
+    public DeletePaperAction() {
+        super();
+        injector.injectMembers(this);
+    }
 
     @Override
     public void validateInput() {
+        if (projectName != null) {
+            project = projectService.find(projectName);
+        }
 
     }
 
@@ -22,36 +33,23 @@ public class DeletePaperAction extends BaseAction {
     @Override
     protected String executeImpl() throws Exception {
         Paper paper = new Paper();
-        Project project = (Project) session.get(Constants.ATTR_PROJECT);
-        if (project == null) {
-            addActionError(getText("error.user.auth.notLoggedIn"));
-            return Constants.RESULT_USER_NOT_AUTHENTICATED;
-        }
-        String[] temp = id.split("\\.");
-        for (String idString : temp){
-            paper = paperService.find(Integer.parseInt(idString));
-            paperService.delete(paper);
-        }
+        if (id != null) {
 
+            String[] temp = id.split("\\.");
+            for (String idString : temp){
+                paper = paperService.find(Integer.parseInt(idString));
+                paperService.delete(paper);
+            }
+            return null;
+        }
         return null;
     }
 
-
-
-
-    public String getId() {
-        return id;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
-    public void setId(String ids) {
-        this.id = ids;
-    }
-
-    public IPaperService getPaperService() {
-        return paperService;
-    }
-
-    public void setPaperService(IPaperService paperService) {
-        this.paperService = paperService;
+    public void setId(String id) {
+        this.id = id;
     }
 }
