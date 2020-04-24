@@ -44,21 +44,30 @@ public class CreatePaperActionTest  {
         action.setQuestionService(questionService);
         assertEquals(questionService,action.getQuestionService());
     }
-
     @Test
-    public void nullIdsTest() throws Exception{
-        Paper paper = new Paper();
-        paper.setName("dfdfsdf");
-        action.setPaper(paper);
-        assertNull(action.executeImpl());
-
+    public void validateInputWithName() throws Exception {
+        action.setProjectName("TEST-FIRST-PROJECT");
+        action.validateInput();
     }
+//    @Test
+//    public void nullIdsTest() throws Exception{
+//        action = new CreatePaperAction();
+//        action.validateInput();
+//        Paper paper = new Paper();
+//        paper.setName("dfdfsdf");
+//        action.setIds("-1");
+//        action.setPaper(paper);
+//        assertNull(action.executeImpl());
+//
+//    }
     @Test
     public void rightIdsTest() throws Exception{
-        String strings = "1.2.3";
+        action = new CreatePaperAction();
+        action.setProjectName("test0404");
+        String strings = "4";
         action.setIds(strings);
         Paper paper = new Paper();
-        paper.setName("acsdfdvdas");
+        paper.setName("abc");
         action.setPaper(paper);
         assertEquals(strings,action.getIds());
         assertNull(action.executeImpl());
