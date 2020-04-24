@@ -8,6 +8,7 @@ import cn.cstqb.exam.testmaker.mailing.MailNotificationFactory;
 import com.google.common.collect.Sets;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+
 import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.*;
 
@@ -41,8 +42,10 @@ public class CreateQuestionActionTest {
     @Before
     public void setUp() throws Exception {
         rule.getInjector().injectMembers(this);
+        //rule.getInjector().getInstance(CreateQuestionAction.class);
         factory.setContextPath("http://localhost:8081/tm");
         Request = context.mock(HttpServletRequest.class);
+        question = new Question();
         context.checking(new Expectations() {
             {
                 atLeast(1).of(Request).getServerPort();
@@ -77,14 +80,12 @@ public class CreateQuestionActionTest {
 
     @Test
     public void testCreate() throws Exception {
-        question = new Question();
         Project project = projectDao.first();
         KnowledgePoint knowledgePoint = knowledgePointDao.first();
         QuestionType type=questionTypeDao.first();
         QuestionLanguage language=questionLanguageDao.first();
         User author = userDao.first();
         User qa=userDao.last();
-
         question.setProject(project);
         question.setKnowledgePoint(knowledgePoint);
         question.setType(type);
