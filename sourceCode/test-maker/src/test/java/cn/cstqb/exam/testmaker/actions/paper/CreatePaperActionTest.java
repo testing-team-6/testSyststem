@@ -49,17 +49,7 @@ public class CreatePaperActionTest  {
         action.setProjectName("TEST-FIRST-PROJECT");
         action.validateInput();
     }
-//    @Test
-//    public void nullIdsTest() throws Exception{
-//        action = new CreatePaperAction();
-//        action.validateInput();
-//        Paper paper = new Paper();
-//        paper.setName("dfdfsdf");
-//        action.setIds("-1");
-//        action.setPaper(paper);
-//        assertNull(action.executeImpl());
-//
-//    }
+
     @Test
     public void rightIdsTest() throws Exception{
         action = new CreatePaperAction();
