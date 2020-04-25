@@ -7,7 +7,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
+
 import javax.inject.Inject;
+
+import static org.junit.Assert.*;
 
 public class DeleteQuestionChoiceActionTest {
     @Inject private IQuestionChoiceService service;
@@ -29,9 +32,7 @@ public class DeleteQuestionChoiceActionTest {
     @Test
     public void testDelete() throws Exception {
         QuestionChoice choice = service.findQuestionChoice(1);
-        choice.setId(1);
         action.setChoice(choice);
-        action.setId(1);
         action.execute();
     }
 }

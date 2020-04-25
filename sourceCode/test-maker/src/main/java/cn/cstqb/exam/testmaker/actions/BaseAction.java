@@ -3,10 +3,7 @@ package cn.cstqb.exam.testmaker.actions;
 import cn.cstqb.exam.testmaker.configuration.AppInjector;
 import cn.cstqb.exam.testmaker.configuration.ApplicationConfigContext;
 import cn.cstqb.exam.testmaker.configuration.Constants;
-import cn.cstqb.exam.testmaker.entities.Project;
 import cn.cstqb.exam.testmaker.entities.User;
-import cn.cstqb.exam.testmaker.services.IProjectService;
-import cn.cstqb.exam.testmaker.services.impl.ProjectServiceImpl;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -41,9 +38,6 @@ public abstract class BaseAction extends ActionSupport implements SessionAware, 
     protected BaseAction() {
         injector.injectMembers(this);
     }
-    @javax.inject.Inject
-    protected IProjectService projectService;
-
 
     /**
      * Sets the Map of session attributes in the implementing class.
@@ -70,7 +64,7 @@ public abstract class BaseAction extends ActionSupport implements SessionAware, 
      * data is not serialized yet in ActionSupport validate() method.
      *
      * @return The result string of the first error.
-     * @see Constants
+     * @see cn.cstqb.exam.testmaker.configuration.Constants
      */
     public abstract void validateInput();
 
@@ -130,22 +124,4 @@ public abstract class BaseAction extends ActionSupport implements SessionAware, 
     protected User getLoggedInUser() {
         return (User) session.get(Constants.ATTR_USER);
     }
-
-    protected Project getPN(){
-        Project project;
-        if (session == null){
-//            addActionError(getText("error.user.auth.notLoggedIn"));
-            project = projectService.find("test0404");
-        }
-        else{
-            project = (Project) session.get(Constants.ATTR_PROJECT);
-            if (project == null) {
-                addActionError(getText("error.user.auth.notLoggedIn"));
-            }
-        }
-
-        return project;
-
-    }
-
 }
