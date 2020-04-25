@@ -4,12 +4,10 @@ import cn.cstqb.exam.testmaker.actions.BaseAction;
 import cn.cstqb.exam.testmaker.configuration.Constants;
 import cn.cstqb.exam.testmaker.entities.*;
 import cn.cstqb.exam.testmaker.services.IPaperService;
+import cn.cstqb.exam.testmaker.services.IProjectService;
 import cn.cstqb.exam.testmaker.services.IQuestionService;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
 
 public class CreatePaperAction extends BaseAction {
     //Ignore
@@ -17,10 +15,14 @@ public class CreatePaperAction extends BaseAction {
     private IPaperService paperService;
     @Inject
     private IQuestionService questionService;
-
     private Paper newPaper;
     private String ids;
 
+
+    public CreatePaperAction() {
+        super();
+        injector.injectMembers(this);
+    }
 
     @Override
     public void validateInput() {
@@ -34,26 +36,25 @@ public class CreatePaperAction extends BaseAction {
         logger.info(newPaper.getName());
         Paper paper = new Paper();
         paper.setName(newPaper.getName());
-        Project project = (Project) session.get(Constants.ATTR_PROJECT);
-        if (project == null) {
-            addActionError(getText("error.user.auth.notLoggedIn"));
-            return Constants.RESULT_USER_NOT_AUTHENTICATED;
+        if (ids != null){
+            String[] temp = ids.split("\\.");
+            for (String idString : temp){
+                Question question = questionService.findQuestion(Integer.parseInt(idString));
+                paper.addQuestion(question);
+            }
+            paper.setProject(getPN());
+            paperService.saveOrUpdate(paper);//save paper
+            return null;
         }
-        String[] temp = ids.split("\\.");
-        for (String idString : temp){
-            Question question = questionService.findQuestion(Integer.parseInt(idString));
-            paper.addQuestion(question);
-        }
-        paper.setProject(project);
-        paperService.saveOrUpdate(paper);//save paper
-
         return null;
     }
 
     public void setPaper(Paper newPaper) {
         this.newPaper = newPaper;
     }
-
+//    public void setProjectName(String projectName) {
+//        this.projectName = projectName;
+//    }
 
 
     public String getIds() {
@@ -63,6 +64,7 @@ public class CreatePaperAction extends BaseAction {
     public void setIds(String ids) {
         this.ids = ids;
     }
+
 
     public IQuestionService getQuestionService() {
         return questionService;

@@ -106,11 +106,13 @@ public abstract class BaseQuestionAction extends BaseAction {
         if (question.getReviewingStartDate().before(question.getAuthoringStartDate())) {
             addActionError(getText("error.question.reviewingStartDate.earlierThan.authoringStartDate"));
             return;
-        }
+        }//判断1，要求rs＞as
         if (question.getReviewingFinishDate().before(question.getAuthoringFinishDate())) {
             addActionError(getText("error.question.reviewingFinishDate.earlierThan.authoringFinishDate"));
             return;
         }
+
+        //判断2，要求as＞ps；结合判断1和判断2可知rs>ps必定成立；需要修改后面部分的条件
         if (question.getAuthoringStartDate().before(((Project) session.get(Constants.ATTR_PROJECT)).getStartDate()) || question.getReviewingStartDate().before(((Project) session.get(Constants.ATTR_PROJECT)).getStartDate())) {
             addActionError(getText("error.question.startDate.earlierThan.projectStartDate"));
             return;
@@ -126,18 +128,6 @@ public abstract class BaseQuestionAction extends BaseAction {
                 return;
             }
         }
-
-//		if (choiceService.findQuestionChoices(question.getId()) != null) {
-//			numOfCorrectAnswer = 0;
-//			for (QuestionChoice questionChoice: choiceService.findQuestionChoices(question.getId())) {
-//				if (questionChoice.getIsCorrectAnswer()) {
-//					numOfCorrectAnswer++;
-//					if (numOfCorrectAnswer > 1 && question.isMultipleChoice()) {
-//						addActionError(getText("error.questionChoice.correctAnswer.not.match.questionType"));
-//					}
-//				}
-//			}
-//		}
     }
 
     public Question getQuestion() {
