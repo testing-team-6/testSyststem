@@ -21,7 +21,7 @@ public class PaperDaoImpl extends GenericJpaDaoImpl<Paper, Integer> implements P
     @Override
     public List<Paper> findByUser(Project project , String hostname){
         EntityManager em = provider.get();
-        return em.createQuery("SELECT q FROM Paper q WHERE q.project.facilitator=:hostname AND q.project =:project", Paper.class)
+        return em.createQuery("SELECT q FROM Paper q WHERE q.project.facilitator.username=:hostname AND q.project =:project", Paper.class)
                 .setParameter("hostname", hostname)
                 .setParameter("project", project)
                 .getResultList();
