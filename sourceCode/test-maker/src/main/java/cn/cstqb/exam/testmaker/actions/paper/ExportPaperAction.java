@@ -3,6 +3,8 @@ package cn.cstqb.exam.testmaker.actions.paper;
 import cn.cstqb.exam.testmaker.entities.Paper;
 import cn.cstqb.exam.testmaker.entities.Question;
 import cn.cstqb.exam.testmaker.entities.QuestionChoice;
+import cn.cstqb.exam.testmaker.services.IPaperService;
+import cn.cstqb.exam.testmaker.services.IQuestionChoiceService;
 import cn.cstqb.exam.testmaker.services.IQuestionService;
 import cn.cstqb.exam.testmaker.services.impl.QuestionServiceImpl;
 import com.google.inject.Inject;
@@ -26,6 +28,13 @@ import static org.apache.struts2.ServletActionContext.getServletContext;
 
 public class ExportPaperAction extends BasePaperAction {
     private int paperId;
+
+    void setPaperService(IPaperService paperService){
+        this.paperService = paperService;
+    }
+    void setQuestionService(IQuestionChoiceService questionChoiceService){
+        this.questionChoiceService = questionChoiceService;
+    }
 
     public int getPaperId() {
         return paperId;
@@ -73,13 +82,9 @@ public class ExportPaperAction extends BasePaperAction {
             // 创建 PdfWriter 对象 第一个参数是对文档对象的引用，第二个参数是文件的实际名称，在该名称中还会给出其输出路径。
             String path = getServletContext().getRealPath("/");
             File file = new File(path + "test.pdf");
-            if(file.exists()){//删除以往的PDF文件
-                file.delete();
-            }
-            File fileParent = file.getParentFile();
-            if(!fileParent.exists()){
-                fileParent.mkdirs();
-            }
+//            if(file.exists()){//删除以往的PDF文件
+//                file.delete();
+//            }
             file.createNewFile(); //创建新的PDF
             PdfWriter.getInstance(document, new FileOutputStream(file));
 
@@ -104,7 +109,7 @@ public class ExportPaperAction extends BasePaperAction {
 
                 List<QuestionChoice> questionChoices = questionChoiceService.findQuestionChoices(q);//选项
 
-                if(questionChoices != null && questionChoices.size() > 0){
+                if(questionChoices != null){
                     if(q.isMultipleChoice()){
                         document.add(new Paragraph("(多选题）",font));
                     }else {
