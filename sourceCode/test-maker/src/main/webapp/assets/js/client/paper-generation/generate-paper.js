@@ -405,6 +405,8 @@
 
 
     function wrapUp() {
+        paperName.val('');
+        newPaperModal.modal('hide');
         selectedQuestion = {};
         questionForm[0].reset();
         transitionContainer.empty();
@@ -416,7 +418,6 @@
         authorSelectList.val('').trigger('change');
         reviewerSelectList.val('').trigger('change');
         qaSelectList.val('').trigger('change');
-        newPaperModal.modal('hide');
 //        loadData(); //disabled to improve performance
     }
 })();
