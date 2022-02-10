@@ -12,7 +12,7 @@
         <maven.buildNumber.doUpdate>true</maven.buildNumber.doUpdate>
         <maven.tomcat.path>/tm</maven.tomcat.path>
         <maven.tomcat.port>8081</maven.tomcat.port>
-        <version-hibernate-core>4.3.7.Final</version-hibernate-core>
+        <version-hibernate-core>5.4.24.Final</version-hibernate-core>
         <hibernate-validator-version>5.1.3.Final</hibernate-validator-version>
         <version-guice>4.0-beta5</version-guice>
         <version-slf4j>1.7.7</version-slf4j>
